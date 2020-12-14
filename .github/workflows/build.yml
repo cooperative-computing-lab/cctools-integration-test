@@ -9,14 +9,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  conda-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        name: Test Conda Install
+        run: ./conda.sh
 
-      - name: Test Conda Install
-      - run: ./conda.sh
-      
-      - name: Test Git Build and Install
-      - run: ./github.sh
+  github-job:
+    runs-on: ubuntu-latest 
+      - uses: actions/checkout@v2
+        name: Test Git Build and Install
+        run: ./github.sh
         
