@@ -5,12 +5,14 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: '0 1 * * *' # test every day at 1AM
 
   workflow_dispatch:
 
 jobs:
   conda-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -18,10 +20,18 @@ jobs:
           run: ./conda.sh
 
   github-job:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-20.04
     steps:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Git Build and Install
           run: ./github.sh
-        
+       
+  spack-job: 
+    runs-on: ubuntu-20.04
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Test Spack Install
+          run:  ./spack.sh
+
