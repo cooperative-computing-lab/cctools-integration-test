@@ -13,13 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Test Conda Install
-          uses: actions/checkout@v2
           run: ./conda.sh
 
   github-job:
     runs-on: ubuntu-latest 
     steps:
         - name: Test Git Build and Install
-          uses: actions/checkout@v2
           run: ./github.sh
         
