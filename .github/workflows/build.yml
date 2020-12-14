@@ -12,13 +12,14 @@ jobs:
   conda-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         name: Test Conda Install
         run: ./conda.sh
 
   github-job:
     runs-on: ubuntu-latest 
-      - uses: actions/checkout@v2
+    steps:
+        uses: actions/checkout@v2
         name: Test Git Build and Install
         run: ./github.sh
         
