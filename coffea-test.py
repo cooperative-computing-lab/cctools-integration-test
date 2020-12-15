@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # This is a trivial Coffea data analysis test taken from
 # the basic Coffea instructions, with minimal changes
 # in order to run at small scale in an integration test.
@@ -64,27 +66,39 @@ tstart = time.time()
 fileset = {
     'DoubleMuon': [
         'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012B_DoubleMuParked.root',
-        'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012C_DoubleMuParked.root',
+        #'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012C_DoubleMuParked.root',
     ],
-    'ZZ to 4mu': [
-        'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/ZZTo4mu.root'
-    ]
+    #'ZZ to 4mu': [
+    #    'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/ZZTo4mu.root'
+    #]
 }
 
+executor_args = {'flatten': True, #used for all executors
+            'compression': 0, #used for all executors
+            'cores': 2,       # WQ: cores per task
+            'disk': 1000,     # WQ: disk per task (MB)
+            'memory': 2000,   # WQ: memory per task (MB)
+            #'resource-monitor': True, # WQ: enable resource monitor
+            'port': 9123,             # WQ: port to listen on
+            'environment-file': 'conda-coffea-wq-env.tar.gz',
+            'wrapper' : 'miniconda/envs/conda-coffea-wq-env/bin/python_package_run',
+            'master-name': 'coffea-wq-integration-test',
+            'print-stdout': True,
+            'skipbadfiles': True,
+            'nano': True,
+	    'debug-log' : 'coffea-wq.log',
+}
+
+# Run the processor and get the output
+tstart = time.time()
 output = processor.run_uproot_job(
-    fileset,
-    treename='Events',
-    processor_instance=MyProcessor(),
-    executor=processor.futures_executor,
-    executor_args={"schema": BaseSchema, "workers": 4},
-
-    # This causes each worker to just process 4 chunks of 100 events each.
-    # Not scientifically meaningful, but enough to test that it's working.
-    chunksize=100,
-    maxchunks=4,
-
-    #chunksize=100000,
-    #maxchunks=None,
+	fileset,
+	treename='Events',
+	processor_instance=MyProcessor(),
+	executor=processor.work_queue_executor,
+	executor_args=executor_args,
+	chunksize=100000,
+	maxchunks=None,
 )
 
 elapsed = time.time() - tstart

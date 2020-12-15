@@ -1,9 +1,12 @@
 #!/bin/sh
 
+# Fix for local environment at ND: unset PYTHONPATH to ignore existing python installs.
+export PYTHONPATH=
+
 export MINIDIR=`pwd`/miniconda
 
 echo "*** Download Miniconda"
-curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
+#curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
 
 echo "*** Bootstrap miniconda"
 bash conda-install.sh -p `pwd`/miniconda -b
@@ -20,29 +23,16 @@ source ${MINIDIR}/etc/profile.d/conda.sh
 echo "*** Install Conda and Pip packages"
 conda create --name conda-coffea-wq-env
 conda activate conda-coffea-wq-env
-conda install python=3.8.3 six dill
-conda install -c conda-forge ndcctools conda-pack xrootd
+conda install -y python=3.8.3 six dill
+conda install -y -c conda-forge ndcctools conda-pack xrootd
 pip install --no-input coffea
 
 echo "*** Create the Conda-Pack tarball"
-conda-pack --name conda-coffea-wq-env --output=conda-coffea-wa-env.tar.gz
+conda-pack --name conda-coffea-wq-env --output conda-coffea-wq-env.tar.gz
+
+echo "*** Starting a single WQ worker"
+work_queue_worker -d all -o worker.log localhost 9123 &
 
 echo "*** Execute Coffea Application"
-exec python coffea-test.py
+python coffea-test.py
 
-#################################################################
-
-# CAREFUL:
-# These are the old instructions, and don't work:
-# 1 - conda-pack doesn't work in python 3.8.5 for some reason.  Use python 3.8.3
-# 2 - Use the conda-pack package and command line tool directly for clarity.
-# 3 - Let coffea pull its own dependencies for xrootd.
-
-#conda create --name conda-coffea-wq-env python=3.8 six dill
-#conda activate conda-coffea-wq-env
-#conda install -c conda-forge xrootd ndcctools
-#pip install --no-input coffea
-#conda activate base
-
-#pip install --no-input conda-pack
-#python -c 'import conda_pack; conda_pack.pack(name="conda-coffea-wq-env", output="conda-coffea-wq-env.tar.gz")'
