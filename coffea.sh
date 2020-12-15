@@ -6,7 +6,7 @@ export PYTHONPATH=
 export MINIDIR=`pwd`/miniconda
 
 echo "*** Download Miniconda"
-#curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
+curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
 
 echo "*** Bootstrap miniconda"
 bash conda-install.sh -p `pwd`/miniconda -b
