@@ -11,7 +11,7 @@ echo "*** Download Miniconda"
 echo "*** Bootstrap miniconda"
 bash conda-install.sh -p `pwd`/miniconda -b
 export PATH=${MINIDIR}/bin:$PATH
-source ${MINIDIR}/etc/profile.d/conda.sh
+. ${MINIDIR}/etc/profile.d/conda.sh
 
 #################################################################
 # NOTE: The current Coffea-WQ instructions do not work.
