@@ -6,6 +6,10 @@
 # To execute, start this application, and then start workers that
 # will connect to it and execute tasks.
 #
+# Note that, as written, this only processes 4 data chunks and
+# should complete in less than two minutes.  For a real run,
+# change maxchunks=None in the main program below.
+#
 # For simple testing, you can run one worker manually:
 #    work_queue_worker -N coffea-wq-${USER}
 #
@@ -134,7 +138,7 @@ work_queue_executor_args = {
 	'compression': 1,
 	'nano' : False,
 	'schema' : BaseSchema,
-        'skipbadfiles': True,
+        'skipbadfiles': False,      # Note that maxchunks only works if this is false.
  
 	# Options specific to Work Queue: resources to allocate per task.
 	'resources-mode' : 'auto',  # Adapt task resources to what's observed.
@@ -171,7 +175,9 @@ output = processor.run_uproot_job(
 	executor=processor.work_queue_executor,
 	executor_args=work_queue_executor_args,
 	chunksize=100000,
-	maxchunks=None,
+
+	# XXX Change this to None for a full run:
+	maxchunks=4,
 )
 
 elapsed = time.time() - tstart
