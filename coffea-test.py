@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
-# This is a trivial Coffea data analysis test taken from
-# the basic Coffea instructions, with minimal changes
-# in order to run at small scale in an integration test.
-
-# TODO:
-# XXX clean up the runtime output
-# XXX need to detect how many jobs completed and whether whole thing was successful.
-# XXX test whether plain conda install works
-# XXX generate a very small root file for testing.
+##################################################################
+# Sample application that runs Coffea with the Work Queue executor.
+#
+# To execute, start this application, and then start workers that
+# will connect to it and execute tasks.
+#
+# For simple testing, you can run one worker manually:
+#    work_queue_worker -N coffea-wq-${USER}
+#
+# Then to scale up, submit lots of workers to your favorite batch system:
+#    condor_submit_workers -N coffea-wq-${USER} 32
+#
+##################################################################
 
 ###############################################################
 # Sample processor class given in the Coffea manual.
