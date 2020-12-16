@@ -5,23 +5,13 @@ export PYTHONPATH=
 
 export MINIDIR=`pwd`/miniconda
 
-#echo "*** Download Miniconda"
-#curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
+echo "*** Download Miniconda"
+curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
 
-#echo "*** Bootstrap miniconda"
-#bash conda-install.sh -p `pwd`/miniconda -b
+echo "*** Bootstrap miniconda"
+bash conda-install.sh -p `pwd`/miniconda -b
 export PATH=${MINIDIR}/bin:$PATH
 . ${MINIDIR}/etc/profile.d/conda.sh
-
-#################################################################
-# NOTE: The current Coffea-WQ instructions do not work.
-# Once these are figured out and working, we need to update
-# the instructions in the Coffea project:
-# https://coffeateam.github.io/coffea/wq.html#intro-coffea-wq
-#################################################################
-
-rm -rf conda-coffea-wq-env.tar.gz
-rm -rf miniconda/envs/conda-coffea-wq-env
 
 echo "*** Install Conda and Pip packages"
 conda create --name conda-coffea-wq-env
