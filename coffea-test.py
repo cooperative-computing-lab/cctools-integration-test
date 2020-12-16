@@ -73,7 +73,7 @@ fileset = {
     #]
 }
 
-executor_args = {'flatten': True, #used for all executors
+wq_executor_args = {'flatten': True, #used for all executors
             'compression': 0, #used for all executors
             'cores': 2,       # WQ: cores per task
             'disk': 1000,     # WQ: disk per task (MB)
@@ -85,8 +85,9 @@ executor_args = {'flatten': True, #used for all executors
             'master-name': 'coffea-wq-integration-test',
             'print-stdout': True,
             'skipbadfiles': True,
-            'nano': True,
 	    'debug-log' : 'coffea-wq.log',
+            'nano': False,
+            'schema' : BaseSchema,
 }
 
 # Run the processor and get the output
@@ -96,7 +97,7 @@ output = processor.run_uproot_job(
 	treename='Events',
 	processor_instance=MyProcessor(),
 	executor=processor.work_queue_executor,
-	executor_args=executor_args,
+	executor_args=wq_executor_args,
 	chunksize=100000,
 	maxchunks=None,
 )
