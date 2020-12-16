@@ -151,7 +151,7 @@ work_queue_executor_args = {
 
 	# Options to control how workers find this master.
         'master-name': wq_master_name,
-        'port': 0,     # Port for manager to listen on: if zero, will choose automatically.
+        'port': 9123,     # Port for manager to listen on: if zero, will choose automatically.
 
 	# Options to control how the environment is constructed.
 	# The named tarball will be transferred to each worker
