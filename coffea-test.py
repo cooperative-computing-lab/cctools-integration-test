@@ -5,8 +5,6 @@
 # in order to run at small scale in an integration test.
 
 # TODO:
-# XXX put end user's name in the project name
-# XXX detect the wrapper
 # XXX clean up the runtime output
 # XXX need to detect how many jobs completed and whether whole thing was successful.
 # XXX test whether plain conda install works
@@ -71,6 +69,45 @@ class MyProcessor(processor.ProcessorABC):
     def postprocess(self, accumulator):
         return accumulator
 
+
+###############################################################
+# Display some setup info and check common problems.
+###############################################################
+
+print("------------------------------------------------")
+print("Example Coffea Analysis with Work Queue Executor")
+print("------------------------------------------------")
+
+import shutil
+import getpass
+import os.path
+
+wq_env_tarball="conda-coffea-wq-env.tar.gz"
+
+try:
+        wq_wrapper_path=shutil.which('python_package_run')
+except:
+        print("ERROR: could not find python_package_run in PATH.\nCheck to see that cctools is installed and in the PATH.\n")
+        exit(1)
+
+try:
+        wq_master_name="coffea-wq-{}".format(getpass.getuser())
+except:
+        print("ERROR: could not determine current username!")
+        exit(1)
+
+if os.path.exists(wq_env_tarball):
+	print("Environment tarball: {}".format(wq_env_tarball));
+else:
+	print("ERROR: environment tarball {} is not present: create it using conda-pack\n",format(wq_env_tarball))
+	exit(1)
+
+
+print("Master Name: -N "+wq_master_name)
+
+print("------------------------------------------------")
+
+
 ###############################################################
 # Sample data sources come from CERN opendata.
 ###############################################################
@@ -80,9 +117,6 @@ fileset = {
         'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012B_DoubleMuParked.root',
         'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012C_DoubleMuParked.root',
     ],
-    #'ZZ to 4mu': [
-    #    'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/ZZTo4mu.root'
-    #]
 }
 
 ###############################################################
@@ -108,23 +142,21 @@ work_queue_executor_args = {
         'memory': 250,              # Memory needed per task (MB)
 
 	# Options to control how workers find this master.
-        'master-name': 'coffea-wq-integration-test',
+        'master-name': wq_master_name,
         'port': 0,     # Port for manager to listen on: if zero, will choose automatically.
 
 	# Options to control how the environment is constructed.
-	# The named tarball will be transferred to each worker.
-        'environment-file': 'conda-coffea-wq-env.tar.gz',
-        'wrapper' : 'miniconda/envs/conda-coffea-wq-env/bin/python_package_run',
+	# The named tarball will be transferred to each worker
+	# and activated using the wrapper script.
+        'environment-file': wq_env_tarball,
+        'wrapper' : wq_wrapper_path,
 
-	# Debugging options.
+	# Debugging: Display output of task if not empty.
         'print-stdout': True,
+
+	# Debugging: Produce a lot at the master side of things.
 	'debug-log' : 'coffea-wq.log',
 }
-
-
-###############################################################
-# Invoke the Work Queue Executor on MyProcessor
-###############################################################
 
 import time
 tstart = time.time()
