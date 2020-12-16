@@ -4,6 +4,24 @@
 # the basic Coffea instructions, with minimal changes
 # in order to run at small scale in an integration test.
 
+# TODO:
+# XXX put end user's name in the project name
+# XXX detect the wrapper
+# XXX clean up the runtime output
+# XXX need to detect how many jobs completed and whether whole thing was successful.
+# XXX test whether plain conda install works
+# XXX generate a very small root file for testing.
+
+###############################################################
+# Sample processor class given in the Coffea manual.
+###############################################################
+
+import uproot4
+from coffea.nanoevents import NanoEventsFactory, BaseSchema
+
+# https://github.com/scikit-hep/uproot4/issues/122
+uproot4.open.defaults["xrootd_handler"] = uproot4.source.xrootd.MultithreadedXRootDSource
+
 import awkward1 as ak
 from coffea import hist, processor
 
@@ -53,51 +71,66 @@ class MyProcessor(processor.ProcessorABC):
     def postprocess(self, accumulator):
         return accumulator
 
-import uproot4
-from coffea.nanoevents import NanoEventsFactory, BaseSchema
-
-# https://github.com/scikit-hep/uproot4/issues/122
-uproot4.open.defaults["xrootd_handler"] = uproot4.source.xrootd.MultithreadedXRootDSource
-
-
-import time
-tstart = time.time()
+###############################################################
+# Sample data sources come from CERN opendata.
+###############################################################
 
 fileset = {
     'DoubleMuon': [
         'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012B_DoubleMuParked.root',
-        #'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012C_DoubleMuParked.root',
+        'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/Run2012C_DoubleMuParked.root',
     ],
     #'ZZ to 4mu': [
     #    'root://eospublic.cern.ch//eos/root-eos/cms_opendata_2012_nanoaod/ZZTo4mu.root'
     #]
 }
 
-wq_executor_args = {'flatten': True, #used for all executors
-            'compression': 0, #used for all executors
-            'cores': 2,       # WQ: cores per task
-            'disk': 1000,     # WQ: disk per task (MB)
-            'memory': 2000,   # WQ: memory per task (MB)
-            #'resource-monitor': True, # WQ: enable resource monitor
-            'port': 9123,             # WQ: port to listen on
-            'environment-file': 'conda-coffea-wq-env.tar.gz',
-            'wrapper' : 'miniconda/envs/conda-coffea-wq-env/bin/python_package_run',
-            'master-name': 'coffea-wq-integration-test',
-            'print-stdout': True,
-            'skipbadfiles': True,
-	    'debug-log' : 'coffea-wq.log',
-            'nano': False,
-            'schema' : BaseSchema,
+###############################################################
+# Configuration of the Work Queue Executor
+###############################################################
+
+work_queue_executor_args = {
+
+	# Options are common to all executors:
+	'flatten': True,
+	'compression': 1,
+	'nano' : False,
+	'schema' : BaseSchema,
+        'skipbadfiles': True,
+ 
+	# Options specific to Work Queue: resources to allocate per task.
+	'cores': 1,                # Cores needed per task
+        'disk': 300,              # Disk needed per task (MB)
+        'memory': 250,            # Memory needed per task (MB)
+        'resource-monitor': True,  # Measure actual resource consumption
+
+	# Options to control how workers find this master.
+        'master-name': 'coffea-wq-integration-test',
+        'port': 0,     # Port for manager to listen on: if zero, will choose automatically.
+
+	# Options to control how the environment is constructed.
+	# The named tarball will be transferred to each worker.
+        'environment-file': 'conda-coffea-wq-env.tar.gz',
+        'wrapper' : 'miniconda/envs/conda-coffea-wq-env/bin/python_package_run',
+
+	# Debugging options.
+        'print-stdout': True,
+	'debug-log' : 'coffea-wq.log',
 }
 
-# Run the processor and get the output
+
+###############################################################
+# Invoke the Work Queue Executor on MyProcessor
+###############################################################
+
+import time
 tstart = time.time()
 output = processor.run_uproot_job(
 	fileset,
 	treename='Events',
 	processor_instance=MyProcessor(),
 	executor=processor.work_queue_executor,
-	executor_args=wq_executor_args,
+	executor_args=work_queue_executor_args,
 	chunksize=100000,
 	maxchunks=None,
 )
