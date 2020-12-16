@@ -162,6 +162,9 @@ work_queue_executor_args = {
 	# Debugging: Display output of task if not empty.
         'print-stdout': True,
 
+	# Debugging: Display notes about each task submitted/complete.
+	'verbose': False,
+
 	# Debugging: Produce a lot at the master side of things.
 	'debug-log' : 'coffea-wq.log',
 }
