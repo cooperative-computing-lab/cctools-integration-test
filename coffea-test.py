@@ -99,10 +99,13 @@ work_queue_executor_args = {
         'skipbadfiles': True,
  
 	# Options specific to Work Queue: resources to allocate per task.
-	'cores': 1,                # Cores needed per task
-        'disk': 300,              # Disk needed per task (MB)
-        'memory': 250,            # Memory needed per task (MB)
-        'resource-monitor': True,  # Measure actual resource consumption
+	'resources-mode' : 'auto',  # Adapt task resources to what's observed.
+        'resource-monitor': True,   # Measure actual resource consumption
+
+	# Only set these if the resources-mode is 'fixed'.
+	'cores': 1,                 # Cores needed per task
+        'disk': 300,                # Disk needed per task (MB)
+        'memory': 250,              # Memory needed per task (MB)
 
 	# Options to control how workers find this master.
         'master-name': 'coffea-wq-integration-test',
