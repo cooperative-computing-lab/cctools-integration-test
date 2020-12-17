@@ -17,8 +17,7 @@ echo "*** Install Conda and Pip packages"
 conda create --name conda-coffea-wq-env
 conda activate conda-coffea-wq-env
 conda install -y python=3.8.3 six dill
-conda install -y -c conda-forge ndcctools conda-pack xrootd
-pip install --no-input coffea
+conda install -y -c conda-forge coffea ndcctools conda-pack xrootd
 
 echo "*** Create the Conda-Pack tarball"
 conda-pack --name conda-coffea-wq-env --output conda-coffea-wq-env.tar.gz
