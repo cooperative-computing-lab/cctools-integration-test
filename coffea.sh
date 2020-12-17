@@ -14,13 +14,13 @@ export PATH=${MINIDIR}/bin:$PATH
 . ${MINIDIR}/etc/profile.d/conda.sh
 
 echo "*** Install Conda and Pip packages"
-conda create --name conda-coffea-wq-env
-conda activate conda-coffea-wq-env
+conda create --name conda-env
+conda activate conda-env
 conda install -y python=3.8.3 six dill
 conda install -y -c conda-forge coffea ndcctools conda-pack xrootd
 
 echo "*** Create the Conda-Pack tarball"
-conda-pack --name conda-coffea-wq-env --output conda-coffea-wq-env.tar.gz
+conda-pack --name conda-env --output conda-env.tar.gz
 
 echo "*** Starting a single WQ worker"
 work_queue_worker -d all -o worker.log localhost 9123 &

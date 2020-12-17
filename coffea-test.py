@@ -88,7 +88,7 @@ import shutil
 import getpass
 import os.path
 
-wq_env_tarball="conda-coffea-wq-env.tar.gz"
+wq_env_tarball="coffea-env.tar.gz"
 wq_wrapper_path=shutil.which('python_package_run')
 wq_master_name="coffea-wq-{}".format(getpass.getuser())
 
