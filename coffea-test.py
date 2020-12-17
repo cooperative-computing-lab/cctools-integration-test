@@ -1,13 +1,11 @@
-#!/usr/bin/env python
-
 ##################################################################
-# Sample application that runs Coffea with the Work Queue executor.
+# Example of Coffea with the Work Queue executor.
 #
 # To execute, start this application, and then start workers that
 # will connect to it and execute tasks.
 #
 # Note that, as written, this only processes 4 data chunks and
-# should complete in less than two minutes.  For a real run,
+# should complete in a short time.  For a real run,
 # change maxchunks=None in the main program below.
 #
 # For simple testing, you can run one worker manually:
@@ -79,7 +77,7 @@ class MyProcessor(processor.ProcessorABC):
 
 
 ###############################################################
-# Display some setup info and check common problems.
+# Collect and display setup info.
 ###############################################################
 
 print("------------------------------------------------")
@@ -91,27 +89,12 @@ import getpass
 import os.path
 
 wq_env_tarball="conda-coffea-wq-env.tar.gz"
-
-try:
-        wq_wrapper_path=shutil.which('python_package_run')
-except:
-        print("ERROR: could not find python_package_run in PATH.\nCheck to see that cctools is installed and in the PATH.\n")
-        exit(1)
-
-try:
-        wq_master_name="coffea-wq-{}".format(getpass.getuser())
-except:
-        print("ERROR: could not determine current username!")
-        exit(1)
-
-if os.path.exists(wq_env_tarball):
-	print("Environment tarball: {}".format(wq_env_tarball));
-else:
-	print("ERROR: environment tarball {} is not present: create it using conda-pack\n",format(wq_env_tarball))
-	exit(1)
-
+wq_wrapper_path=shutil.which('python_package_run')
+wq_master_name="coffea-wq-{}".format(getpass.getuser())
 
 print("Master Name: -N "+wq_master_name)
+print("Environment: "+wq_env_tarball)
+print("Wrapper Path: "+wq_wrapper_path)
 
 print("------------------------------------------------")
 
@@ -144,10 +127,10 @@ work_queue_executor_args = {
 	'resources-mode' : 'auto',  # Adapt task resources to what's observed.
         'resource-monitor': True,   # Measure actual resource consumption
 
-	# Only set these if the resources-mode is 'fixed'.
-	'cores': 1,                 # Cores needed per task
-        'disk': 300,                # Disk needed per task (MB)
-        'memory': 250,              # Memory needed per task (MB)
+	# With resources set to auto, these are the max values for any task.
+	'cores': 2,                 # Cores needed per task
+        'disk': 2000,                # Disk needed per task (MB)
+        'memory': 2000,              # Memory needed per task (MB)
 
 	# Options to control how workers find this master.
         'master-name': wq_master_name,
@@ -169,8 +152,13 @@ work_queue_executor_args = {
 	'debug-log' : 'coffea-wq.log',
 }
 
+###############################################################
+# Run the analysis via run_uproot_job.
+###############################################################
+
 import time
 tstart = time.time()
+
 output = processor.run_uproot_job(
 	fileset,
 	treename='Events',
@@ -179,10 +167,11 @@ output = processor.run_uproot_job(
 	executor_args=work_queue_executor_args,
 	chunksize=100000,
 
-	# XXX Change this to None for a full run:
+	# Change this to None for a large run:
 	maxchunks=4,
 )
 
 elapsed = time.time() - tstart
+
 print(output)
 
