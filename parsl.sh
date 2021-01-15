@@ -5,12 +5,12 @@
 # Fix for local environment at ND: unset PYTHONPATH to ignore existing python installs.
 export PYTHONPATH=
 
-# Create local Conda environment
-conda create --name wq_parsl python=3.6 conda-pack
-
-# Activate the environment without creating a new shell
+# Activate the Conda shell hooks without starting a new shell.
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
+
+# Create local Conda environment
+conda create --name wq_parsl python=3.6 conda-pack
 conda activate wq_parsl
 
 # Install software into the new environment.

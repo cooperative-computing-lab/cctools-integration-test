@@ -1,8 +1,13 @@
 #!/bin/sh
 
-curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh
-bash conda-install.sh -p `pwd`/miniconda -b
-export PATH=`pwd`/miniconda/bin:$PATH
+# Fix for local environment at ND: unset PYTHONPATH to ignore existing python installs.
+export PYTHONPATH=
+
+# Activate the Conda shell hooks without starting a new shell.
+CONDA_BASE=$(conda info --base)
+. $CONDA_BASE/etc/profile.d/conda.sh
+
 conda install -y -c conda-forge ndcctools
 
+# We should run a simple makeflow here to make sure it's all working.
 

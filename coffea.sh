@@ -3,15 +3,9 @@
 # Fix for local environment at ND: unset PYTHONPATH to ignore existing python installs.
 export PYTHONPATH=
 
-export MINIDIR=`pwd`/miniconda
-
-echo "*** Download Miniconda"
-curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda-install.sh 
-
-echo "*** Bootstrap miniconda"
-bash conda-install.sh -p `pwd`/miniconda -b
-export PATH=${MINIDIR}/bin:$PATH
-. ${MINIDIR}/etc/profile.d/conda.sh
+# Activate the Conda shell hooks without starting a new shell.
+CONDA_BASE=$(conda info --base)
+. $CONDA_BASE/etc/profile.d/conda.sh
 
 echo "*** Install Conda and Pip packages"
 conda create --name coffea-env
