@@ -11,6 +11,7 @@ conda create --name wq_parsl python=3.6 conda-pack
 # Activate the environment without creating a new shell
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
+conda activate wq_parsl
 
 # Install software into the new environment.
 conda install -c conda-forge parsl ndcctools
