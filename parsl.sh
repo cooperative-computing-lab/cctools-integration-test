@@ -7,11 +7,15 @@ export PYTHONPATH=
 
 # Create local Conda environment
 conda create --name wq_parsl python=3.6 conda-pack
-conda activate wq_parsl
+
+# Activate the environment without creating a new shell
+CONDA_BASE=$(conda info --base)
+source $CONDA_BASE/etc/profile.d/conda.sh
+
+# Install software into the new environment.
 conda install -c conda-forge parsl ndcctools
 
 # Run Parsl application with WQ option.
 # Note that it internally uses the local provider to start workers.
-
 python parsl-test.py
 exit $?
