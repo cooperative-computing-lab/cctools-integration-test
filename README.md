@@ -1,4 +1,4 @@
-CCTools Pacakaging Test
+CCTools Packaging Test
 -----------------------
 
 These simple scripts perform end-to-end installation tests of cctools
