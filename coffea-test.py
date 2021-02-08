@@ -20,13 +20,13 @@
 # Sample processor class given in the Coffea manual.
 ###############################################################
 
-import uproot4
+import uproot
 from coffea.nanoevents import NanoEventsFactory, BaseSchema
 
 # https://github.com/scikit-hep/uproot4/issues/122
-uproot4.open.defaults["xrootd_handler"] = uproot4.source.xrootd.MultithreadedXRootDSource
+uproot.open.defaults["xrootd_handler"] = uproot.source.xrootd.MultithreadedXRootDSource
 
-import awkward1 as ak
+import awkward as ak
 from coffea import hist, processor
 
 # register our candidate behaviors
@@ -117,7 +117,6 @@ fileset = {
 work_queue_executor_args = {
 
     # Options are common to all executors:
-    'flatten': True,
     'compression': 1,
     'nano' : False,
     'schema' : BaseSchema,
