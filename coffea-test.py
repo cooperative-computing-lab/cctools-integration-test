@@ -118,7 +118,6 @@ work_queue_executor_args = {
 
     # Options are common to all executors:
     'compression': 1,
-    'nano' : False,
     'schema' : BaseSchema,
     'skipbadfiles': False,      # Note that maxchunks only works if this is false.
  
