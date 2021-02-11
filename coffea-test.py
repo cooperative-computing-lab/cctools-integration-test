@@ -21,7 +21,7 @@
 ###############################################################
 
 import uproot
-from coffea.nanoevents import NanoEventsFactory, NanoAODSchema, BaseSchema
+from coffea.nanoevents import NanoEventsFactory, BaseSchema
 
 # https://github.com/scikit-hep/uproot4/issues/122
 uproot.open.defaults["xrootd_handler"] = uproot.source.xrootd.MultithreadedXRootDSource
@@ -118,7 +118,7 @@ work_queue_executor_args = {
 
     # Options are common to all executors:
     'compression': 1,
-    'schema' : NanoAODSchema,
+    'schema' : BaseSchema,
     'skipbadfiles': False,      # Note that maxchunks only works if this is false.
  
     # Options specific to Work Queue: resources to allocate per task.
