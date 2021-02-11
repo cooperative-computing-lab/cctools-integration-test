@@ -177,7 +177,7 @@ print(output)
 # Expected output:
 # {'sumw': defaultdict_accumulator(<class 'float'>, {'DoubleMuon': 400224.0}), 'mass': <Hist (dataset,mass) instance at 0x7f4e02708460>}
 
-if output[sumw]['DoubleMuon']==40024.0:
+if output['sumw']['DoubleMuon']==40024.0:
     print("Output is correct.")
 else:
     raise RuntimeError("Incorrect output value!")
