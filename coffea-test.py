@@ -49,6 +49,11 @@ class MyProcessor(processor.ProcessorABC):
         return self._accumulator
 
     def process(self, events):
+
+        # Note: This is required to ensure that behaviors are registered
+        # when running this code in a remote task.
+        ak.behavior.update(candidate.behavior)
+
         output = self.accumulator.identity()
 
         dataset = events.metadata['dataset']
