@@ -14,5 +14,8 @@ export PATH=${PREFIX}/bin:${PATH}
 
 
 # Add some tests...
-parrot_run -- stat /cvmfs/cms.cern.ch/releases.map
+if parrot_run --check-driver cvmfs
+then
+    parrot_run -- stat /cvmfs/cms.cern.ch/releases.map
+fi
 
