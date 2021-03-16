@@ -7,8 +7,8 @@ PREFIX=`pwd`/cctools
 
 wget "https://github.com/cooperative-computing-lab/cctools/releases/download/nightly/${TARBALL}"
 
-mkdir ${PREFIX}
-tar -C "${PREFIX}" --strip-components=1 "${TARBALL}"
+mkdir -p ${PREFIX}
+tar -C "${PREFIX}" --strip-components=1 -xf "${TARBALL}"
 
 export PATH=${PREFIX}/bin:${PATH}
 
