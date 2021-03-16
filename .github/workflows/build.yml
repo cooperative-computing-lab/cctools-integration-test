@@ -46,6 +46,13 @@ jobs:
           uses: actions/checkout@v2
         - name: Test Parsl Build and Install
           run:  ./parsl.sh
+
+  binaries-job:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+    steps:
+        - name: Test Binary Install
+          run:  ./binaries.sh
  
 # The spack job currently burns 30 mins of build time, and then fails.
 # Leave it out until we have some chance to debug locally.
