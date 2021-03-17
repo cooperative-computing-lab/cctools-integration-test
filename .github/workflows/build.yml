@@ -56,15 +56,12 @@ jobs:
         - name: Test Binary Install
           run:  ./binaries.sh
  
-# The spack job currently burns 30 mins of build time, and then fails.
-# Leave it out until we have some chance to debug locally.
-# (It does work at ND on RHEL 7/8, so this may be an ubuntu issue.)
-
-#  spack-job: 
-#    runs-on: ubuntu-20.04
-#    steps:
-#        - name: Checkout
-#          uses: actions/checkout@v2
-#        - name: Test Spack Install
-#          run:  ./spack.sh
+  spack-job: 
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Test Spack Install
+          run:  ./spack.sh
 
