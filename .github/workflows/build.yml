@@ -58,7 +58,7 @@ jobs:
  
   spack-job: 
     runs-on: ubuntu-20.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
         - name: Checkout
           uses: actions/checkout@v2
