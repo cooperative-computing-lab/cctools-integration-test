@@ -1,4 +1,8 @@
-name: CI
+# Performs the daily integration test to ensure
+# that cctools builds and runs real applications
+# via our standard distribution channels.
+
+name: CI-Daily
 
 on:
   push:
@@ -6,7 +10,7 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '0 1 */7 * *' # test every day at 1AM
+    - cron: '0 1 * * *' # test every day at 1AM
 
   workflow_dispatch:
 
@@ -55,13 +59,3 @@ jobs:
           uses: actions/checkout@v2
         - name: Test Parrot Binary + CVMFS Install
           run:  ./parrot-cvmfs-job.sh
- 
-  spack-job: 
-    runs-on: ubuntu-20.04
-    timeout-minutes: 60
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Test Spack Install
-          run:  ./spack.sh
-
