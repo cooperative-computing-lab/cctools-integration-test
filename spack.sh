@@ -5,5 +5,11 @@ git clone -b cctools-packaging-test --single-branch https://github.com/btovar/sp
 
 export SPACK_ROOT=`pwd`/spack
 . spack/share/spack/setup-env.sh
-spack install --test root cctools
 
+if spack install --test root cctools
+then
+    echo "spack install succeeded"
+else
+    echo "spack install failed"
+    cat /tmp/running/spack-stage/spack-stage-cctools-*/spack-build-out.txt
+fi
