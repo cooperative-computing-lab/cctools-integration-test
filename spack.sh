@@ -11,5 +11,5 @@ then
     echo "spack install succeeded"
 else
     echo "spack install failed"
-    cat /tmp/running/spack-stage/spack-stage-cctools-*/spack-build-out.txt
+    cat /tmp/runner/spack-stage/spack-stage-cctools-*/spack-build-out.txt
 fi
