@@ -10,7 +10,10 @@ if spack install --test root cctools
 then
     echo "spack install succeeded"
 else
-    cat /tmp/runner/spack-stage/spack-stage-cctools-*/spack-build-out.txt
+    cd /tmp/runner/spack-stage/spack-stage-cctools-*
+    cat spack-build-out.txt
+    echo "========================================================"
+    cat spack-src/cctools.test.log
     echo "========================================================"
     echo "spack install failed"
     echo "========================================================"
