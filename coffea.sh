@@ -8,10 +8,10 @@ CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
 echo "*** Install Conda and Pip packages"
-conda create --name coffea-env
+conda create -y --name coffea-env
 conda activate coffea-env
 conda install -y python=3.8.3 six dill
-conda install -y -c conda-forge coffea ndcctools conda-pack xrootd
+conda install -y -c conda-forge coffea=0.7.4 ndcctools conda-pack xrootd uproot
 
 echo "*** Create the Conda-Pack tarball"
 conda-pack --name coffea-env --output coffea-env.tar.gz
