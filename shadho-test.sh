@@ -17,7 +17,7 @@ conda install pip -y	#shadho is installed through pip
 python -m pip install shadho
 
 #run work_queue_worker. This command is heuristic and based on shadho code.
-$CONDA_PREFIX/bin/work_queue_worker -M shadho-wq-packaging-test-tphung --cores 1 --single-shot &
+$CONDA_PREFIX/bin/work_queue_worker -M shadho-wq-packaging-test-$USER --cores 1 --single-shot &
 
 #get worker pid to kill later
 export SHADHO_WORKER_PID=$!
