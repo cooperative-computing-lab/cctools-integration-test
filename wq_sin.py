@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
 	# Instead of the objective function, shadho is given a command that gets
 	# run on the remote worker.
-	opt = Shadho('sin_ex', 'bash run_sin.sh', space, timeout=60)
+	opt = Shadho('shadho-wq-packaging-test', 'bash run_sin.sh', space, timeout=60)
 
 	# Two input files are also added: the first is run directly by the worker
 	# and can be used to set up your runtime environment (module load, anyone?)
