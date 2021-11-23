@@ -25,9 +25,10 @@ export SHADHO_WORKER_PID=$!
 #run manager with simple application
 python wq_sin.py
 
-#remove resulting files from shadho application
-rm results.json results.json.bak.1 
-rm shadho_master.debug shadho_master.log
+result=$?
+
+# leave results in place so that one can debug failures
+#rm results.json results.json.bak.1 shadho_master.debug shadho_master.log
 
 #kill the worker, to be sure
 kill -9 $SHADHO_WORKER_PID
@@ -35,3 +36,6 @@ kill -9 $SHADHO_WORKER_PID
 #deactivate and remove the created environment
 conda deactivate
 conda remove --name shadho-wq-packaging-test --all -y
+
+# return the actual result of the application
+exit $result
