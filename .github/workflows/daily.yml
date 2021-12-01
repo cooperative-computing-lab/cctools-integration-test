@@ -67,5 +67,5 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Shadho Integration with Work Queue
-        run: ./shadho-test.sh
+          run: ./shadho-test.sh
 
