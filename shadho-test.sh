@@ -12,7 +12,7 @@ conda create --name shadho-wq-packaging-test -y
 conda activate shadho-wq-packaging-test
 
 #install ndcctools and shadho
-conda install -c conda-forge ndcctools -y
+conda install -c conda-forge ndcctools python=3.8 -y
 conda install pip -y	#shadho is installed through pip
 python -m pip install shadho
 
