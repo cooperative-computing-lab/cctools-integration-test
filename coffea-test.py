@@ -33,6 +33,8 @@ from coffea import hist, processor
 from coffea.nanoevents.methods import candidate
 ak.behavior.update(candidate.behavior)
 
+from work_queue import Factory
+
 class MyProcessor(processor.ProcessorABC):
     def __init__(self):
         self._accumulator = processor.dict_accumulator({
@@ -94,12 +96,10 @@ import getpass
 import os.path
 
 wq_env_tarball="coffea-env.tar.gz"
-wq_wrapper_path=shutil.which('python_package_run')
 wq_master_name="coffea-wq-{}".format(getpass.getuser())
 
 print("Master Name: -N "+wq_master_name)
 print("Environment: "+wq_env_tarball)
-print("Wrapper Path: "+wq_wrapper_path)
 
 print("------------------------------------------------")
 
@@ -125,7 +125,7 @@ work_queue_executor_args = {
     'compression': 1,
     'schema' : BaseSchema,
     'skipbadfiles': False,      # Note that maxchunks only works if this is false.
- 
+
     # Options specific to Work Queue: resources to allocate per task.
     'resources_mode' : 'auto',  # Adapt task resources to what's observed.
     'resource_monitor': True,   # Measure actual resource consumption
@@ -143,8 +143,8 @@ work_queue_executor_args = {
     # Options to control how the environment is constructed.
     # The named tarball will be transferred to each worker
     # and activated using the wrapper script.
-    'environment_file': wq_env_tarball,
-    'wrapper' : wq_wrapper_path,
+    # 'environment_file': wq_env_tarball,
+    # 'wrapper' : wq_wrapper_path,
 
     # Debugging: Display output of task if not empty.
     'print_stdout': True,
@@ -163,17 +163,23 @@ work_queue_executor_args = {
 import time
 tstart = time.time()
 
-output = processor.run_uproot_job(
-    fileset,
-    treename='Events',
-    processor_instance=MyProcessor(),
-    executor=processor.work_queue_executor,
-    executor_args=work_queue_executor_args,
-    chunksize=100000,
+workers = Factory("local", manager_host_port="localhost:9123")
 
-    # Change this to None for a large run:
-    maxchunks=4,
-)
+workers.max_workers = 1
+workers.min_workers = 1
+workers.python_package = wq_env_tarball
+with workers:
+    output = processor.run_uproot_job(
+        fileset,
+        treename='Events',
+        processor_instance=MyProcessor(),
+        executor=processor.work_queue_executor,
+        executor_args=work_queue_executor_args,
+        chunksize=100000,
+
+        # Change this to None for a large run:
+        maxchunks=4,
+    )
 
 elapsed = time.time() - tstart
 

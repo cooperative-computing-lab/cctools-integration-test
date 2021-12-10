@@ -22,3 +22,4 @@ work_queue_worker -d all -o worker.log localhost 9123 &
 echo "*** Execute Coffea Application"
 python coffea-test.py
 
+
