@@ -19,7 +19,13 @@ conda-pack --name coffea-env --output coffea-env.tar.gz
 echo "*** Starting a single WQ worker"
 work_queue_worker -d all -o worker.log localhost 9123 &
 
-echo "*** Execute Coffea Application"
+echo "*** Downloading current wq-example.py from coffea documentation"
+wget https://raw.githubusercontent.com/CoffeaTeam/coffea/master/docs/source/wq-example.py -O coffea-test-downloaded.py
+
+echo "*** Execute static Coffea Application currently located in repository"
+python coffea-test.py
+
+echo "*** Execute most recent work_queue example Coffea Application currently located in the Coffea GitHub"
 python coffea-test.py
 
 
