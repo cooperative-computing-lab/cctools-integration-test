@@ -26,6 +26,6 @@ echo "*** Execute static Coffea Application currently located in repository"
 python coffea-test.py
 
 echo "*** Execute most recent work_queue example Coffea Application currently located in the Coffea GitHub"
-python coffea-test.py
+python coffea-test-downloaded.py
 
 
