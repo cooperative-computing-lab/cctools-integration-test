@@ -12,6 +12,7 @@ conda create -y --name coffea-env
 conda activate coffea-env
 conda install -y python=3.8.3 six dill
 conda install -y -c conda-forge coffea ndcctools xrootd
+echo "*** All packages successfully installed"
 
 echo "*** Create the Conda-Pack tarball"
 conda-pack --name coffea-env --output coffea-env.tar.gz
