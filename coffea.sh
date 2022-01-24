@@ -8,10 +8,10 @@ CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
 echo "*** Install Conda and Pip packages"
-conda create -y --name coffea-env
+
+conda config --set channel_priority strict
+conda create -y --name coffea-env -c conda-forge python=3.9 six dill coffea ndcctools xrootd
 conda activate coffea-env
-conda install -y python=3.9 six dill
-conda install -y -c conda-forge coffea ndcctools xrootd
 
 echo "*** Create the Conda-Pack tarball"
 conda-pack --name coffea-env --output coffea-env.tar.gz
