@@ -10,7 +10,7 @@ CONDA_BASE=$(conda info --base)
 echo "*** Install Conda and Pip packages"
 conda create -y --name coffea-env
 conda activate coffea-env
-conda install -y python=3.8.3 six dill
+conda install -y python=3.9 six dill
 conda install -y -c conda-forge coffea ndcctools xrootd
 
 echo "*** Create the Conda-Pack tarball"
