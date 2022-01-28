@@ -8,11 +8,8 @@ CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
 echo "*** Install Conda and Pip packages"
-conda create -y --name coffea-env
+conda create -y --name coffea-env -c conda-forge --strict-channel-priority python=3.9 six dill coffea ndcctools xrootd
 conda activate coffea-env
-conda install -y python=3.8.3 six dill
-conda install -y -c conda-forge coffea ndcctools xrootd
-echo "*** All packages successfully installed"
 
 echo "*** Create the Conda-Pack tarball"
 conda-pack --name coffea-env --output coffea-env.tar.gz
@@ -28,5 +25,4 @@ python coffea-test.py
 
 echo "*** Execute most recent work_queue example Coffea Application currently located in the Coffea GitHub"
 python coffea-test-downloaded.py
-
 
