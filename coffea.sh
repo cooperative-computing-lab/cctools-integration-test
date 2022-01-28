@@ -30,7 +30,7 @@ kill $STATIC_WORKER_PID
 echo "*** Starting a single WQ worker"
 work_queue_worker -d all -o worker.log localhost 9123 &
 
-
+sleep 5
 echo "*** Execute most recent work_queue example Coffea Application currently located in the Coffea GitHub"
 python coffea-test-downloaded.py
 
