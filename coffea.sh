@@ -25,9 +25,10 @@ wget https://raw.githubusercontent.com/CoffeaTeam/coffea/master/docs/source/wq-e
 echo "*** Execute static Coffea Application currently located in repository"
 python coffea-test.py
 
-echo "*** Killing old worker and starting new one to run downloaded Coffea example"
+echo "*** Killing old worker and starting new one to run downloaded Coffea example. Also deletes the wq-factory folder to avoid a fatal error"
 kill $STATIC_WORKER_PID
 rm -rfd wq-factory-*
+
 echo "*** Starting a single WQ worker"
 work_queue_worker -d all -o worker.log localhost 9123 &
 
