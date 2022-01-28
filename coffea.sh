@@ -20,7 +20,7 @@ wget https://raw.githubusercontent.com/CoffeaTeam/coffea/master/docs/source/wq-e
 echo "*** Execute static Coffea Application currently located in repository"
 python coffea-test.py
 
-ps au
+ps aux
 
 echo "*** Execute most recent work_queue example Coffea Application currently located in the Coffea GitHub"
 python coffea-test-downloaded.py
