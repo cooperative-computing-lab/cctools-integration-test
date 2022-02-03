@@ -19,4 +19,12 @@ else
     exit 1
 fi
 
+if spack load cctools
+then
+    echo "spack load succeeded"
+else
+    echo "spack load failed"
+    exit 1
+fi
+
 exec ./smoke.sh
