@@ -7,7 +7,8 @@ export PYTHONPATH=
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
+# Now do the real install.
 conda install -y -c conda-forge ndcctools
 
-# We should run a simple makeflow here to make sure it's all working.
-
+# After install, run some basic commands.
+exec ./smoke.sh
