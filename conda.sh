@@ -7,8 +7,9 @@ export PYTHONPATH=
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
-# Now do the real install.
-conda install -y -c conda-forge ndcctools
+# Create and install a new environment.
+conda create -y --name cctools-test -c conda-forge --strict-channel-priority python=3.9 ndcctools
+conda activate cctools-test
 
 # After install, run some basic commands.
 exec ./smoke.sh
