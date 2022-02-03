@@ -7,4 +7,6 @@ cd github-cctools
 make install
 cd ..
 
+export PATH=${PREFIX}/bin:${PATH}
+
 exec ./smoke.sh
