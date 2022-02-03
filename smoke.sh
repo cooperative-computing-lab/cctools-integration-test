@@ -17,10 +17,21 @@ EOF
 
 makeflow -T wq -Z wq.port smoke.mf &
 
-while [ ! -f wq.port ] 
+for count in 1 2 3 4 5
 do
+	if [ -f wq.port ]
+	then
+		echo "waiting for port file..."
+		break
+	fi
 	sleep 1
 done
+
+if [ ! -f wq.port ]
+then
+	echo "error: makeflow didn't create wq.port file"
+	exit 1
+fi
 
 work_queue_worker --single-shot localhost `cat wq.port`
 
