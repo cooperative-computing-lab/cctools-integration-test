@@ -12,7 +12,7 @@ else
     cd /tmp/runner/spack-stage/spack-stage-cctools-*
     cat spack-build-out.txt
     echo "========================================================"
-    cat spack-src/cctools.test.log
+    cat spack-src/cctools.test.fail
     echo "========================================================"
     echo "spack install failed"
     echo "========================================================"
