@@ -10,7 +10,7 @@ CFG_DIR=$(realpath topcoffea-conf)
 DATA_FILE=${CFG_DIR}/ttHJet_UL17_R1B14_NAOD-00000_10194_NDSkim.root
 
 CFG=$(realpath ${CFG_DIR}/UL17_private_ttH_for_CI.json)
-if [[ ! ${DATA_FILE} ]]
+if [[ ! -f ${DATA_FILE} ]]
 then
     curl -o ${DATA_FILE} http://www.crc.nd.edu/~kmohrman/files/root_files/for_ci/ttHJet_UL17_R1B14_NAOD-00000_10194_NDSkim.root
 fi
