@@ -17,7 +17,7 @@ fi
 
 if [[ ! -d topcoffea-env ]]
 then
-    conda create -y --prefix topcoffea-env -c conda-forge --strict-channel-priority python=3.9 coffea xrootd ndcctools dill conda conda-pack git
+    conda create -y -q --prefix topcoffea-env -c conda-forge --strict-channel-priority python=3.9 coffea xrootd ndcctools dill conda conda-pack git
 fi
 
 conda activate ./topcoffea-env
