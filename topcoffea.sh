@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/bash
 
 # Activate the Conda shell hooks without starting a new shell.
 CONDA_BASE=$(conda info --base)
@@ -20,11 +20,12 @@ then
     conda create -y --prefix topcoffea-env -c conda-forge --strict-channel-priority python=3.9 coffea xrootd ndcctools dill conda conda-pack git
 fi
 
+conda activate ./topcoffea-env
+
 git clone https://github.com/TopEFT/topcoffea.git
 cd topcoffea
 
 unset PYTHONPATH
-conda activate ../topcoffea-env
 pip install -e .
 
 cd analysis/topEFT
