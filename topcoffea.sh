@@ -51,7 +51,7 @@ echo "*** Extract results for comparison"
 python get_yield_json.py -f histos/output_check_yields_wq.pkl.gz  -n output_check_yields_wq
 
 echo "*** Compare results with ground truth"
-python comp_yields.py output_check_yields_wq.json ${CFG_DIR}/ground_truth_yield.json -t1 'New yields' -t2 'Ref yields'
+python comp_yields.py output_check_yields_wq.json ${CFG_DIR}/ground_truth_yield.json -t1 'New yields' -t2 'Ref yields' --tolerance 1.00
 
 
 
