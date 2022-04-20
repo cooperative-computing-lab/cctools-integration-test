@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -ex
+
 # Activate the Conda shell hooks without starting a new shell.
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
@@ -22,7 +24,11 @@ fi
 
 conda activate ./topcoffea-env
 
-git clone https://github.com/TopEFT/topcoffea.git
+if [[ ! -d topcoffea ]]
+then
+    git clone https://github.com/TopEFT/topcoffea.git
+fi
+
 cd topcoffea
 
 unset PYTHONPATH
@@ -40,3 +46,12 @@ python work_queue_run.py ${CFG}\
     --prefix ${CFG_DIR}/\
     --port 9123-9124\
     --chunksize 25000
+
+echo "*** Extract results for comparison"
+python get_yield_json.py -f histos/output_check_yields_wq.pkl.gz  -n output_check_yields_wq
+
+echo "*** Compare results with ground truth"
+python comp_yields.py output_check_yields_wq.json ${CFG_DIR}/ground_truth_yield.json -t1 'New yields' -t2 'Ref yields'
+
+
+
