@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# Test for integration of Parsl and Work Queue starting from Conda install.
+# Test for integration of Parsl with Work Queue and TaskVine starting from Conda install.
 
 # Fix for local environment at ND: unset PYTHONPATH to ignore existing python installs.
 export PYTHONPATH=
-export CONDA_ENV=./wq_parsl
+export CONDA_ENV=./wq_vine_parsl
+export LOCAL_PARSL=./parsl
 
-trap cleanup EXIT
+#trap cleanup EXIT
 
 cleanup() {
     rm -rf ${CONDA_ENV}
+    rm -rf ${LOCAL_PARSL}
 }
 
 
@@ -19,7 +21,14 @@ CONDA_BASE=$(conda info --base)
 
 
 # Create local conda environment:
-conda create --yes --prefix ${CONDA_ENV} -c conda-forge python=3.9 parsl ndcctools
+conda create --yes --prefix ${CONDA_ENV} -c conda-forge python=3.9
+
+# Install Parsl manually from tphung's PR
+git clone git@github.com:tphung3/parsl.git parsl
+git checkout taskvine-integration
+pip install ${LOCAL_PARSL}
+exit
+# Install CCTools taskvine
 
 # Run Parsl application with WQ option.
 # Note that it internally uses the local provider to start workers.
