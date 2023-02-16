@@ -50,6 +50,7 @@ def app_sum(inputs=[]):
 def run(config, exec_name):
 
     # Load the executor config file
+    parsl.clear()
     parsl.load(config)
 
     # Create a list of integers
@@ -73,7 +74,3 @@ if __name__ == '__main__':
 
     #test TaskVine
     run(vine_config, 'TaskVine')
-
-
-
-
