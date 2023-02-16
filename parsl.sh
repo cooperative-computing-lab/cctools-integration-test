@@ -12,15 +12,12 @@ trap cleanup EXIT
 cleanup() {
     rm -rf ${CONDA_ENV}
     rm -rf ${LOCAL_PARSL_SRC}
-    rm -rf vine-run-info
     rm -rf runinfo
 }
-
 
 # Activate the Conda shell hooks without starting a new shell.
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
-
 
 # Create local conda environment that can compile and install CCTools on the master branch,
 # this listing of packages can be found on CCTools installation webpage (install from GitHub):
