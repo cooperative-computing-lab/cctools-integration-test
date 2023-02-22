@@ -1,14 +1,16 @@
-# Sample Parsl application uses Work Queue for execution.
+# Sample Parsl application uses Work Queue and TaskVine for execution.
+# Work Queue is tested first and then Parsl.
 
 import parsl
 from parsl import python_app, bash_app
 from parsl.executors import WorkQueueExecutor
+from parsl.executors import TaskVineExecutor
 import work_queue as wq
+import taskvine as vine
 
 # Create the WQ executor to send tasks to workers.
 # Note that the LocalProvider is used by default to start a worker.
-
-config = parsl.config.Config(
+wq_config = parsl.config.Config(
     executors=[
         WorkQueueExecutor(
             label="wq_parsl_integration_test",
@@ -20,12 +22,20 @@ config = parsl.config.Config(
     ] 
 )
 
-# This is the MapReduce example verbatim from the Parsl docs:
+# Create the WQ executor to send tasks to workers.
+vine_config = parsl.config.Config(
+    executors=[
+        TaskVineExecutor(
+            label="vine_parsl_integration_test",
+            port=9124,
+            project_name="vine_parsl_integration_test",
+            shared_fs=False,
+            full_debug = True,
+        )
+    ] 
+)
 
-from parsl import python_app
-
-parsl.load(config)
-
+# Test functions to be used in the MapReduce paradigm
 # Map function that returns double the input integer
 @python_app
 def app_double(x):
@@ -36,16 +46,31 @@ def app_double(x):
 def app_sum(inputs=[]):
     return sum(inputs)
 
-# Create a list of integers
-items = range(0,100)
+# Start the executor to execute functions
+def run(config, exec_name):
 
-# Map phase: apply the double *app* function to each item in list
-mapped_results = []
-for i in items:
-    x = app_double(i)
-    mapped_results.append(x)
+    # Load the executor config file
+    parsl.clear()
+    parsl.load(config)
 
-# Reduce phase: apply the sum *app* function to the set of results
-total = app_sum(inputs=mapped_results)
+    # Create a list of integers
+    items = range(0,100)
 
-print(total.result())
+    # Map phase: apply the double *app* function to each item in list
+    mapped_results = []
+    for i in items:
+        x = app_double(i)
+        mapped_results.append(x)
+
+    # Reduce phase: apply the sum *app* function to the set of results
+    total = app_sum(inputs=mapped_results)
+
+    print(f'{exec_name}: {total.result()}')
+
+if __name__ == '__main__':
+
+    #test Work Queue
+    run(wq_config, 'WorkQueue')
+
+    #test TaskVine
+    run(vine_config, 'TaskVine')
