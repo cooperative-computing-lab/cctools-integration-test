@@ -1,28 +1,11 @@
-# Sample Parsl application uses Work Queue and TaskVine for execution.
-# Work Queue is tested first and then Parsl.
+# Sample Parsl application uses TaskVine for execution.
 
 import parsl
 from parsl import python_app, bash_app
-from parsl.executors import WorkQueueExecutor
 from parsl.executors import TaskVineExecutor
-import work_queue as wq
 import taskvine as vine
 
-# Create the WQ executor to send tasks to workers.
-# Note that the LocalProvider is used by default to start a worker.
-wq_config = parsl.config.Config(
-    executors=[
-        WorkQueueExecutor(
-            label="wq_parsl_integration_test",
-            port=9123,
-            project_name="wq_parsl_integration_test",
-            shared_fs=False,
-            full_debug = True,
-        )
-    ] 
-)
-
-# Create the WQ executor to send tasks to workers.
+# Create the TaskVine executor to send tasks to workers.
 vine_config = parsl.config.Config(
     executors=[
         TaskVineExecutor(
@@ -68,9 +51,6 @@ def run(config, exec_name):
     print(f'{exec_name}: {total.result()}')
 
 if __name__ == '__main__':
-
-    #test Work Queue
-    run(wq_config, 'WorkQueue')
 
     #test TaskVine
     run(vine_config, 'TaskVine')
