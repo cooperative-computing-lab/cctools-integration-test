@@ -27,7 +27,7 @@ conda create --yes --prefix ${CONDA_ENV} -c conda-forge --strict-channel-priorit
 conda run --prefix ${CONDA_ENV} git clone https://github.com/tphung3/parsl.git ${LOCAL_PARSL_SRC}
 cd ${LOCAL_PARSL_SRC}
 conda run --prefix ../${CONDA_ENV} git checkout taskvine-integration
-conda run --prefix ${CONDA_ENV} pip install ${LOCAL_PARSL_SRC} -r test-requirements.txt -r requirements.txt
+conda run --prefix ../${CONDA_ENV} pip install ${LOCAL_PARSL_SRC} -r test-requirements.txt -r requirements.txt
 cd -
 
 # Run Parsl application with TaskVine.
