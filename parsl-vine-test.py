@@ -2,7 +2,7 @@
 
 import parsl
 from parsl import python_app, bash_app
-from parsl.executors import TaskVineExecutor
+from parsl.executors.taskvine import TaskVineExecutor
 import taskvine as vine
 
 # Create the TaskVine executor to send tasks to workers.

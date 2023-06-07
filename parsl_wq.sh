@@ -22,7 +22,7 @@ CONDA_BASE=$(conda info --base)
 conda create --yes --prefix ${CONDA_ENV} -c conda-forge --strict-channel-priority python=3.9 ndcctools parsl
 
 # Run Parsl application with WQ.
-# Note that it internally uses the local provider to start workers.
+# Note that it internally uses the local provider to start 1 worker.
 conda run --prefix ${CONDA_ENV} python parsl-wq-test.py
 status=$?
 
