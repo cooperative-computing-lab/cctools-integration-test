@@ -13,7 +13,7 @@ vine_config = parsl.config.Config(
             port=9124,
             project_name="vine_parsl_integration_test",
             shared_fs=False,
-            full_debug = True,
+            full_debug=True,
         )
     ] 
 )
