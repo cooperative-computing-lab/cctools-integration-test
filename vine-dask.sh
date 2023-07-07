@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export PYTHONPATH=
+export CONDA_ENV=./vine-dask-env
 
 # Activate the Conda shell hooks without starting a new shell.
 CONDA_BASE=$(conda info --base)
