@@ -5,13 +5,11 @@
 # Fix for local environment at ND: unset PYTHONPATH to ignore existing python installs.
 export PYTHONPATH=
 export CONDA_ENV=./vine_parsl
-export LOCAL_PARSL_SRC=./parsl-src
 
 trap cleanup EXIT
 
 cleanup() {
     rm -rf ${CONDA_ENV}
-    rm -rf ${LOCAL_PARSL_SRC}
     rm -rf runinfo
 }
 
