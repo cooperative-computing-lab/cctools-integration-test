@@ -4,7 +4,6 @@ import parsl
 from parsl import python_app, bash_app
 from parsl.executors.taskvine import TaskVineExecutor
 from parsl.executors.taskvine import TaskVineManagerConfig
-import ndcctools.taskvine as vine
 
 # Create the TaskVine executor to send tasks to workers.
 vine_config = parsl.config.Config(
