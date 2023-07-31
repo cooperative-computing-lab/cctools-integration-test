@@ -15,14 +15,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  conda-job:
+  conda-prod-job:
     runs-on: ubuntu-20.04
     timeout-minutes: 30
     steps:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Conda Install
-          run: ./conda.sh
+          run: ./conda-prod.sh
+
+  conda-devel-job:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Test Conda Developer Install
+          run: ./conda-devel.sh
 
   github-job:
     runs-on: ubuntu-20.04
@@ -30,7 +39,7 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v2
-        - name: Test Git Build and Install
+        - name: Test Basic Git Build and Install
           run: ./github.sh
 
 # Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
