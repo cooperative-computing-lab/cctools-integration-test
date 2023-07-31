@@ -55,10 +55,10 @@ def run(config, exec_name):
     expected = 9900
     
     if value==expected:
-            print(f("Got expected value of {value}"))
+            print(f"Got expected value of {value}")
             sys.exit(0)
     else:
-            print(f("Got incorrect value of {value}!"))
+            print(f"Got incorrect value of {value}!")
             sys.exit(1)
 
 if __name__ == '__main__':
