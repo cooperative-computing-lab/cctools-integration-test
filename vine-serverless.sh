@@ -10,7 +10,7 @@ CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
 # Create and install a new environment.
-conda create -y --name cctools-test -c conda-forge --strict-channel-priority python=3 ndcctools
+conda create -yq --name cctools-test -c conda-forge --strict-channel-priority python=3 ndcctools
 conda activate cctools-test
 
 python3 vine-serverless.py
