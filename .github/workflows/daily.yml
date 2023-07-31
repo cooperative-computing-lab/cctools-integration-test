@@ -78,6 +78,15 @@ jobs:
           uses: actions/checkout@v2
         - name: Test Dask Build and Install with TaskVine
           run:  ./vine-dask.sh
+
+  vine-serverless-job:
+     runs-on: ubuntu-20.04
+     timeout-minutes: 10
+     steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Test Vine Serverless Mode
+          run:  ./vine-serverless.sh
   
   parrot-cvmfs-job:
     runs-on: ubuntu-20.04
