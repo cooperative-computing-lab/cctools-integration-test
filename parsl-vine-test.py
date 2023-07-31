@@ -32,10 +32,12 @@ def app_sum(inputs=[]):
 # Start the executor to execute functions
 def run(config, exec_name):
 
+    print("Initializaing Parsl")
     # Load the executor config file
     parsl.clear()
     parsl.load(config)
 
+    print("Creating Workflow")
     # Create a list of integers
     items = range(0,100)
 
@@ -48,7 +50,17 @@ def run(config, exec_name):
     # Reduce phase: apply the sum *app* function to the set of results
     total = app_sum(inputs=mapped_results)
 
-    print(f'{exec_name}: {total.result()}')
+    print("Executing Workflow")
+    value = total.result()
+    expected = 9900
+    
+    if(value==expected) {
+            printf("Got expected value of {value}")
+            sys.exit(0)
+    } else {
+            printf("Got incorrect value of {value!}")
+            sys.exit(1)
+    }
 
 if __name__ == '__main__':
 
