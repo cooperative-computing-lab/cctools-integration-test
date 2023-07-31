@@ -4,6 +4,7 @@ import parsl
 from parsl import python_app, bash_app
 from parsl.executors import WorkQueueExecutor
 import work_queue as wq
+import sys
 
 # Create the WQ executor to send tasks to workers.
 # Note that the LocalProvider is used by default to start a worker.
