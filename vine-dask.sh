@@ -7,7 +7,7 @@ export CONDA_ENV=./vine-dask-env
 CONDA_BASE=$(conda info --base)
 . $CONDA_BASE/etc/profile.d/conda.sh
 
-conda create --yes --prefix ${CONDA_ENV} -c conda-forge --strict-channel-priority ndcctools dask
+conda create -yq --prefix ${CONDA_ENV} -c conda-forge --strict-channel-priority ndcctools dask
 
 conda run --prefix ${CONDA_ENV} python vine-dask-test.py
 
