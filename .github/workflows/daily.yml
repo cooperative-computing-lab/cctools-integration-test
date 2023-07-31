@@ -81,7 +81,7 @@ jobs:
 
   vine-serverless-job:
      runs-on: ubuntu-20.04
-     timeout-minutes: 10
+     timeout-minutes: 20
      steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -90,7 +90,7 @@ jobs:
   
   parrot-cvmfs-job:
     runs-on: ubuntu-20.04
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
         - name: Checkout
           uses: actions/checkout@v2
