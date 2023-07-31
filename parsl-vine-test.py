@@ -54,13 +54,12 @@ def run(config, exec_name):
     value = total.result()
     expected = 9900
     
-    if(value==expected) {
-            printf("Got expected value of {value}")
+    if value==expected:
+            print(f("Got expected value of {value}"))
             sys.exit(0)
-    } else {
-            printf("Got incorrect value of {value!}")
+    else:
+            print(f("Got incorrect value of {value}!"))
             sys.exit(1)
-    }
 
 if __name__ == '__main__':
 
