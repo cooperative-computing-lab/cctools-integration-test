@@ -22,7 +22,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Conda Install
-          run: ./conda-prod.sh
+          run: ./test-conda-prod.sh
 
   conda-devel-job:
     runs-on: ubuntu-20.04
@@ -31,7 +31,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Conda Developer Install
-          run: ./conda-devel.sh
+          run: ./test-conda-devel.sh
 
   github-job:
     runs-on: ubuntu-20.04
@@ -40,7 +40,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Basic Git Build and Install
-          run: ./github.sh
+          run: ./test-github.sh
 
   parsl-wq-job:
     runs-on: ubuntu-20.04
@@ -49,7 +49,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Parsl Build and Install with WQ
-          run:  ./parsl_wq.sh
+          run:  ./test-parsl-wq.sh
 
   parsl-vine-job:
     runs-on: ubuntu-20.04
@@ -58,16 +58,16 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Parsl Build and Install with TaskVine
-          run:  ./parsl_vine.sh
+          run:  ./test-parsl-vine.sh
 
-  vine-dask-job:
+  dask-vine-job:
      runs-on: ubuntu-20.04
      timeout-minutes: 10
      steps:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Dask Build and Install with TaskVine
-          run:  ./vine-dask.sh
+          run:  ./test-dask-vine.sh
 
   vine-serverless-job:
      runs-on: ubuntu-20.04
@@ -76,7 +76,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Vine Serverless Mode
-          run:  ./vine-serverless.sh
+          run:  ./test-vine-serverless.sh
   
   parrot-cvmfs-job:
     runs-on: ubuntu-20.04
@@ -85,7 +85,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Parrot Binary + CVMFS Install
-          run:  ./parrot-cvmfs-job.sh
+          run:  ./test-parrot-cvmfs.sh
 
 # Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
 #  coffea-job:
