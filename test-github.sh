@@ -5,4 +5,4 @@
 . ./install-github.sh
 
 # Run the basic smoke tests.
-../test-smoke.sh
+. ./test-smoke.sh
