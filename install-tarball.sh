@@ -8,7 +8,7 @@ TARBALL="cctools-nightly-x86_64-ubuntu20.04.tar.gz"
 PREFIX=`pwd`/cctools-install
 
 # Fetch the tarball
-wget "https://github.com/cooperative-computing-lab/cctools/releases/download/nightly/${TARBALL}"
+wget --quiet "https://github.com/cooperative-computing-lab/cctools/releases/download/nightly/${TARBALL}"
 
 # Unpack into prefix
 mkdir -p ${PREFIX}

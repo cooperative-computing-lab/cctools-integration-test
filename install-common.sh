@@ -7,7 +7,7 @@ set -xe
 export PYTHONPATH=
 
 # Put the Conda environment into this local path
-export CONDA_ENV=cctools-test-env
+export CONDA_ENV=`pwd`/cctools-test-env
 
 # On exit, destroy the conda environment, to ensure a clean run each time.
 trap cleanup EXIT
