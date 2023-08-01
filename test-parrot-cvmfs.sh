@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./install-tarball.sh
+. ./install-tarball.sh
 
 if parrot_run true
 then

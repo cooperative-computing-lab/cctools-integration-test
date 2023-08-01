@@ -1,7 +1,7 @@
 # Install a binary from the tarball distribution into $PREFIX
 
 # Get the common install setup
-source install-common.sh
+.install-common.sh
 
 # Choose the Ubuntu distribution
 TARBALL="cctools-nightly-x86_64-ubuntu20.04.tar.gz"

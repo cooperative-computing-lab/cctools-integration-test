@@ -1,7 +1,7 @@
 # Build and install ndcctools from github and activate that installation.
 
 # Do the common setup items first.
-source ./install-common.sh
+. ./install-common.sh
 
 PREFIX=`pwd`/cctools-install
 

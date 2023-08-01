@@ -1,7 +1,7 @@
 # Install the production version of ndcctools from conda
 
 # Do the common setup items first.
-source ./install-common.sh
+.. ./install-common.sh
 
 # Create and install a new environment.
 conda create -y --name ${CONDA_ENV} -c conda-forge --strict-channel-priority python=3 ndcctools
