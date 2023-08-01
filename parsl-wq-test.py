@@ -4,6 +4,7 @@ import parsl
 from parsl import python_app, bash_app
 from parsl.executors import WorkQueueExecutor
 import work_queue as wq
+import sys
 
 # Create the WQ executor to send tasks to workers.
 # Note that the LocalProvider is used by default to start a worker.
@@ -49,7 +50,16 @@ def run(config, exec_name):
     # Reduce phase: apply the sum *app* function to the set of results
     total = app_sum(inputs=mapped_results)
 
-    print(f'{exec_name}: {total.result()}')
+    print("Executing Workflow")
+    value = total.result()
+    expected = 9900
+    
+    if value==expected:
+            print(f"Got expected value of {value}")
+            sys.exit(0)
+    else:
+            print(f"Got incorrect value of {value}!")
+            sys.exit(1)
 
 if __name__ == '__main__':
 

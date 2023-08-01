@@ -4,7 +4,7 @@ import parsl
 from parsl import python_app, bash_app
 from parsl.executors.taskvine import TaskVineExecutor
 from parsl.executors.taskvine import TaskVineManagerConfig
-import ndcctools.taskvine as vine
+import sys
 
 # Create the TaskVine executor to send tasks to workers.
 vine_config = parsl.config.Config(
@@ -33,10 +33,12 @@ def app_sum(inputs=[]):
 # Start the executor to execute functions
 def run(config, exec_name):
 
+    print("Initializaing Parsl")
     # Load the executor config file
     parsl.clear()
     parsl.load(config)
 
+    print("Creating Workflow")
     # Create a list of integers
     items = range(0,100)
 
@@ -49,7 +51,16 @@ def run(config, exec_name):
     # Reduce phase: apply the sum *app* function to the set of results
     total = app_sum(inputs=mapped_results)
 
-    print(f'{exec_name}: {total.result()}')
+    print("Executing Workflow")
+    value = total.result()
+    expected = 9900
+    
+    if value==expected:
+            print(f"Got expected value of {value}")
+            sys.exit(0)
+    else:
+            print(f"Got incorrect value of {value}!")
+            sys.exit(1)
 
 if __name__ == '__main__':
 
