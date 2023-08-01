@@ -17,11 +17,12 @@ make install
 echo =============================================
 cd ..
 
-# Activate the installation by setting PATH etc so it can be used directly.
-
+# This gives the full path to the python directory with the version appended:
 pythondir=`ls -1d $PREFIX/lib/python*`
 
+# Activate the installation by setting PATH etc so it can be used directly.
+
 export PATH=$PREFIX/bin:$PATH
-export PYTHONPATH=$PREFIX/lib/${pythondir}/site-packages
+export PYTHONPATH=${pythondir}/site-packages
 export LD_LIBRARY_PATH=$PREFIX/lib
 
