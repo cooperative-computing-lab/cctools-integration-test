@@ -19,6 +19,9 @@ cd ..
 
 # Activate the installation by setting PATH etc so it can be used directly.
 
+pythondir=`ls -1 $PREFIX/lib/python*`
+
 export PATH=$PREFIX/bin:$PATH
-export PYTHON_PATH=$PREFIX/lib/python*/site-packages
+export PYTHONPATH=$PREFIX/lib/${pythondir}/site-packages
 export LD_LIBRARY_PATH=$PREFIX/lib
+
