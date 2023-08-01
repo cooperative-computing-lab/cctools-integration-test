@@ -1,21 +1,19 @@
-#!/bin/sh
+# Install a binary from the tarball distribution into $PREFIX
 
-set -e
+# Get the common install setup
+source install-common.sh
 
+# Choose the Ubuntu distribution
 TARBALL="cctools-nightly-x86_64-ubuntu20.04.tar.gz"
-PREFIX=`pwd`/cctools
+PREFIX=`pwd`/cctools-install
 
+# Fetch the tarball
 wget "https://github.com/cooperative-computing-lab/cctools/releases/download/nightly/${TARBALL}"
 
+# Unpack into prefix
 mkdir -p ${PREFIX}
 tar -C "${PREFIX}" --strip-components=1 -xf "${TARBALL}"
 
+# Activate the path to the tarball
 export PATH=${PREFIX}/bin:${PATH}
-
-
-# Add some tests...
-if parrot_run --check-driver cvmfs
-then
-    parrot_run -- stat /cvmfs/cms.cern.ch/releases.map
-fi
 
