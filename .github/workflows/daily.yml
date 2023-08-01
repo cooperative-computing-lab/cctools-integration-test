@@ -76,7 +76,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Vine Serverless Mode
-          run:  ./testvine-serverless.sh
+          run:  ./test-vine-serverless.sh
   
   parrot-cvmfs-job:
     runs-on: ubuntu-20.04

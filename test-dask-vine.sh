@@ -4,4 +4,4 @@
 . ./install-dask-cctools.sh
 
 # Run Dask test, creating a worker internally using the factory.
-python3 test-vine-dask.py
+python3 test-dask-vine.py
