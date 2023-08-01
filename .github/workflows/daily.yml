@@ -42,16 +42,6 @@ jobs:
         - name: Test Basic Git Build and Install
           run: ./github.sh
 
-# Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
-#  coffea-job:
-#    runs-on: ubuntu-20.04
-#    timeout-minutes: 30
-#    steps:
-#        - name: Checkout
-#          uses: actions/checkout@v2
-#        - name: Test Coffea Build and Install
-#          run: ./coffea.sh
-
   parsl-wq-job:
     runs-on: ubuntu-20.04
     timeout-minutes: 30
@@ -97,14 +87,27 @@ jobs:
         - name: Test Parrot Binary + CVMFS Install
           run:  ./parrot-cvmfs-job.sh
 
-  topcoffea-job:
-    runs-on: ubuntu-20.04
-    timeout-minutes: 30
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Test topcoffea and env creation
-          run:  ./topcoffea.sh
+# Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
+#  coffea-job:
+#    runs-on: ubuntu-20.04
+#    timeout-minutes: 30
+#    steps:
+#        - name: Checkout
+#          uses: actions/checkout@v2
+#        - name: Test Coffea Build and Install
+#          run: ./coffea.sh
+
+# Disable old topcoffea job, no longer works with base histograms.
+# Will re-enable once we have coffea-dask applications.
+
+#  topcoffea-job:
+#    runs-on: ubuntu-20.04
+#    timeout-minutes: 30
+#    steps:
+#        - name: Checkout
+#          uses: actions/checkout@v2
+#        - name: Test topcoffea and env creation
+#          run:  ./topcoffea.sh
   
   # shadho-job:
   #   runs-on: ubuntu-20.04
