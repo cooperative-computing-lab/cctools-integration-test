@@ -60,14 +60,14 @@ jobs:
         - name: Test Parsl Build and Install with TaskVine
           run:  ./test-parsl-vine.sh
 
-  vine-dask-job:
+  dask-vine-job:
      runs-on: ubuntu-20.04
      timeout-minutes: 10
      steps:
         - name: Checkout
           uses: actions/checkout@v2
         - name: Test Dask Build and Install with TaskVine
-          run:  ./test-vine-dask.sh
+          run:  ./test-dask-vine.sh
 
   vine-serverless-job:
      runs-on: ubuntu-20.04
