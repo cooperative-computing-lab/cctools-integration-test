@@ -11,7 +11,10 @@ vine_config = parsl.config.Config(
     executors=[
         TaskVineExecutor(
             label="vine_parsl_integration_test",
-            use_factory=True,
+            factory_config=TaskVineFactoryConfig(
+                batch_type="local",
+                min_workers=1,
+                max_workers=1),
             manager_config=TaskVineManagerConfig(
                 port=9124,
                 project_name='vine_parsl_integration_test')
