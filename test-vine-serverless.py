@@ -15,7 +15,7 @@ def main():
     q = vine.Manager(port=0)
 
     print("Creating Library from functions...")
-    function_lib = q.create_library_from_functions('test-library', divide, double)
+    function_lib = q.create_library_from_functions('test-library', divide, double, add_env=False)
     q.install_library(function_lib)
 
     print("Starting worker factory for port {}...".format(q.port))
