@@ -93,8 +93,8 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v2
-        - name: Test TopCoffea + Work Queue
-          run:  ./test-topcoffea.sh
+        - name: Test TopEFT + Work Queue
+          run:  ./test-topeft.sh
 
 # Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
 #  coffea-job:

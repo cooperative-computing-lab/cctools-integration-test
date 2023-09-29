@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. install-topcoffea.sh
+. install-topeft.sh
 
 cd topeft/analysis/topeft_run2
 
