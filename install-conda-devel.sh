@@ -7,7 +7,7 @@
 curl https://raw.githubusercontent.com/cooperative-computing-lab/cctools/master/environment.yml > environment.yml
 
 # Create and install an environment with all of the dependencies of cctools.
-conda env create -yq --prefix ${CONDA_ENV} -f environment.yml --experimental-solver=libmamba
+conda env create --yes --quiet --prefix ${CONDA_ENV} -f environment.yml --experimental-solver=libmamba
 
 # Activate the environment.
 conda activate ${CONDA_ENV}
