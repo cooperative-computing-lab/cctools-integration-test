@@ -11,7 +11,7 @@ then
     curl -o ${DATA_FILE} http://ccl.cse.nd.edu/workflows/topcoffea-test-data/ttHJet_UL17_R1B14_NAOD-00000_10194_NDSkim.root
 fi
 
-conda create -y -q -n ${CONDA_ENV} -c conda-forge --strict-channel-priority --experimental-solver=libmamba python=3 coffea xrootd ndcctools dill conda conda-pack git
+conda create -y -q -p ${CONDA_ENV} -c conda-forge --strict-channel-priority --experimental-solver=libmamba python=3 coffea xrootd ndcctools dill conda conda-pack git
 
 conda activate ${CONDA_ENV}
 
