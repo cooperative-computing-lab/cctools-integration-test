@@ -9,7 +9,7 @@ CONDA_BASE=$(conda info --base)
 
 echo "*** Install Conda and Pip packages"
 
-conda create -yq --name coffea-env -c conda-forge --strict-channel-priority python=3.9 six dill coffea ndcctools xrootd
+conda create -yq --name coffea-env -c conda-forge --strict-channel-priority --experimental-solver=libmamba python=3.9 six dill coffea ndcctools xrootd
 conda activate coffea-env
 
 echo "*** Create the Conda-Pack tarball"
