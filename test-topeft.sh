@@ -8,7 +8,7 @@ echo "*** Starting a single WQ worker"
 work_queue_worker -d all -o worker.log --single-shot -t 300 localhost 9123 &
 
 echo "*** Execute TopCoffea Application"
-python run_topeft.py --executor work_queue ${CFG}\
+python run_analysis.py --executor work_queue ${CFG}\
     -o output_check_yields_wq\
     -p histos\
     --prefix ${CFG_DIR}/\
