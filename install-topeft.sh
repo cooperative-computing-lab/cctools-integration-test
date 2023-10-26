@@ -4,9 +4,11 @@
 
 # Installing fresh from conda is too slow, use micromamba instead.
 curl -L micro.mamba.pm/install.sh | bash
-source ~/.bashrc
+# Pull in the micromamba shell configuration
+. $HOME/.bashrc
+# Activate the root environment
 micromamba activate
-
+			       
 CFG_DIR=$(realpath topcoffea-conf)
 DATA_FILE=${CFG_DIR}/ttHJet_UL17_R1B14_NAOD-00000_10194_NDSkim.root
 CFG=$(realpath ${CFG_DIR}/UL17_private_ttH_for_CI.json)
