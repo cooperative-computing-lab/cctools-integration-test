@@ -14,7 +14,7 @@ fi
 git clone https://github.com/TopEFT/topeft.git
 cd topeft
 unset PYTHONPATH 
-conda env create -q -f environment.yml --experimental-solver=libmamba
+conda env create -q -f environment.yml
 conda activate coffea-env
 pip install -e .
 cd ..
