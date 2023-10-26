@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 30
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Conda Install
           run: ./test-conda-prod.sh
 
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 30
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Conda Developer Install
           run: ./test-conda-devel.sh
 
@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 30
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Basic Git Build and Install
           run: ./test-github.sh
 
@@ -47,7 +47,7 @@ jobs:
     timeout-minutes: 30
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Parsl Build and Install with WQ
           run:  ./test-parsl-wq.sh
 
@@ -56,7 +56,7 @@ jobs:
     timeout-minutes: 30
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Parsl Build and Install with TaskVine
           run:  ./test-parsl-vine.sh
 
@@ -65,7 +65,7 @@ jobs:
      timeout-minutes: 10
      steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Dask Build and Install with TaskVine
           run:  ./test-dask-vine.sh
 
@@ -74,7 +74,7 @@ jobs:
      timeout-minutes: 20
      steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Vine Serverless Mode
           run:  ./test-vine-serverless.sh
   
@@ -83,7 +83,7 @@ jobs:
     timeout-minutes: 10
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test Parrot Binary + CVMFS Install
           run:  ./test-parrot-cvmfs.sh
 
@@ -92,7 +92,7 @@ jobs:
     timeout-minutes: 30
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Test TopEFT + Work Queue
           run:  ./test-topeft.sh
 
@@ -102,7 +102,7 @@ jobs:
 #    timeout-minutes: 30
 #    steps:
 #        - name: Checkout
-#          uses: actions/checkout@v2
+#          uses: actions/checkout@v3
 #        - name: Test Coffea Build and Install
 #          run: ./coffea.sh
 
@@ -111,7 +111,7 @@ jobs:
   #   timeout-minutes: 30
   #   steps:
   #       - name: Checkout
-  #         uses: actions/checkout@v2
+  #         uses: actions/checkout@v3
   #       - name: Test Shadho Integration with Work Queue
   #         run: ./shadho-test.sh
 
