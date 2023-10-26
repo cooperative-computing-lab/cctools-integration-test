@@ -6,6 +6,10 @@
 curl -L micro.mamba.pm/install.sh | bash
 # Pull in the micromamba shell configuration
 . $HOME/.bashrc
+echo ==============================
+cat $HOME/.bashrc
+echo ==============================
+
 # Activate the root environment
 micromamba activate
 			       
