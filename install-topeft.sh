@@ -9,7 +9,7 @@ bash ./install-micromamba.sh
 
 # Activate the shell hooks without starting a new shell.
 export MAMBA_ROOT_PREFIX=$HOME/micromamba
-eval "$($HOME/bin/micromamba shell hook --shell bash)"
+eval "$($HOME/.local/bin/micromamba shell hook --shell bash)"
 
 # Activate the root environment
 micromamba activate
