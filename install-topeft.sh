@@ -8,7 +8,8 @@ chmod 755 install-micromamba.sh
 bash ./install-micromamba.sh
 
 # Activate the shell hooks without starting a new shell.
-eval "$($HOME/bin/micromamba shell hook -s posix)"
+export MAMBA_ROOT_PREFIX=$HOME/micromamba
+eval "$($HOME/bin/micromamba shell hook --shell bash)"
 
 # Activate the root environment
 micromamba activate
