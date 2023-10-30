@@ -7,4 +7,5 @@
 . ./install-github.sh
 
 # Run the basic smoke tests.
-. ./test-smoke.sh
+. ./test-makeflow-workqueue.sh
+. ./test-makeflow-taskvine.sh
