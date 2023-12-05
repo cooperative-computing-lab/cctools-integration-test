@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #install & activate conda env
-#. ./install-conda-prod.sh
+. ./install-conda-prod.sh
 
 #install bs4 for webscraping
 conda install -y beautifulsoup4 bs4
