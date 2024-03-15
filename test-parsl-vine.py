@@ -61,9 +61,11 @@ def run(config, exec_name):
     
     if value==expected:
             print(f"Got expected value of {value}")
+            parsl.dfk().cleanup()
             sys.exit(0)
     else:
             print(f"Got incorrect value of {value}!")
+            parsl.dfk().cleanup()
             sys.exit(1)
 
 if __name__ == '__main__':
