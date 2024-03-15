@@ -54,6 +54,10 @@ def run(config, exec_name):
     value = total.result()
     expected = 9900
     
+    # need to manually call parsl.dfk().cleanup() to cleanly end submit process.
+    # previously this call was included in the parsl atexit handler, however it 
+    # was removed due to runtime errors in Python 3.12+ when forks are attempted
+    # from atexit handlers. 
     if value==expected:
             print(f"Got expected value of {value}")
             parsl.dfk().cleanup()
