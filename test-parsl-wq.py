@@ -1,7 +1,7 @@
 # Sample Parsl application uses Work Queue for execution.
 
 import parsl
-from parsl import python_app, bash_app
+from parsl import python_app, bash_app, DataFlowKernel
 from parsl.executors import WorkQueueExecutor
 import work_queue as wq
 import sys

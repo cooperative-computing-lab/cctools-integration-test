@@ -1,7 +1,7 @@
 # Sample Parsl application uses TaskVine for execution.
 
 import parsl
-from parsl import python_app, bash_app
+from parsl import python_app, bash_app, DataFlowKernel
 from parsl.executors.taskvine import TaskVineExecutor
 from parsl.executors.taskvine import TaskVineManagerConfig
 from parsl.executors.taskvine import TaskVineFactoryConfig
