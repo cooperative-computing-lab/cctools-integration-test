@@ -40,37 +40,32 @@ def run(config, exec_name):
     print("Initializaing Parsl")
     # Load the executor config file
     parsl.clear()
-    parsl.load(config)
+    with parsl.load(config=config) as dfk:
+        assert isinstance(dfk, DataFlowKernel)
+        
+        print("Creating Workflow")
+        # Create a list of integers
+        items = range(0,100)
 
-    print("Creating Workflow")
-    # Create a list of integers
-    items = range(0,100)
+        # Map phase: apply the double *app* function to each item in list
+        mapped_results = []
+        for i in items:
+            x = app_double(i)
+            mapped_results.append(x)
 
-    # Map phase: apply the double *app* function to each item in list
-    mapped_results = []
-    for i in items:
-        x = app_double(i)
-        mapped_results.append(x)
+        # Reduce phase: apply the sum *app* function to the set of results
+        total = app_sum(inputs=mapped_results)
 
-    # Reduce phase: apply the sum *app* function to the set of results
-    total = app_sum(inputs=mapped_results)
-
-    print("Executing Workflow")
-    value = total.result()
-    expected = 9900
-   
-    # need to manually call parsl.dfk().cleanup() to cleanly end submit/factory process.
-    # previously this call was included in the parsl atexit handler, however it 
-    # was removed due to runtime errors in Python 3.12+ when forks are attempted
-    # from atexit handlers. 
-    if value==expected:
-            print(f"Got expected value of {value}")
-            parsl.dfk().cleanup()
-            sys.exit(0)
-    else:
-            print(f"Got incorrect value of {value}!")
-            parsl.dfk().cleanup()
-            sys.exit(1)
+        print("Executing Workflow")
+        value = total.result()
+        expected = 9900
+       
+        if value==expected:
+                print(f"Got expected value of {value}")
+                sys.exit(0)
+        else:
+                print(f"Got incorrect value of {value}!")
+                sys.exit(1)
 
 if __name__ == '__main__':
 
