@@ -20,7 +20,7 @@ CFG=$(realpath ${CFG_DIR}/UL17_private_ttH_for_CI.json)
 
 if [[ ! -f ${DATA_FILE} ]]
 then
-    curl -o ${DATA_FILE} http://ccl.cse.nd.edu/workflows/topcoffea-test-data/ttHJet_UL17_R1B14_NAOD-00000_10194_NDSkim.root
+    curl -L -o ${DATA_FILE} https://ccl.cse.nd.edu/workflows/topcoffea-test-data/ttHJet_UL17_R1B14_NAOD-00000_10194_NDSkim.root
 fi
 
 git clone https://github.com/TopEFT/topeft.git
