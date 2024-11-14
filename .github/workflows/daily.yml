@@ -96,6 +96,14 @@ jobs:
         - name: Test TopEFT + Work Queue
           run:  ./test-topeft.sh
 
+  vine-task-throughput:
+     runs-on: ubuntu-20.04
+     timeout-minutes: 20
+     steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Test Vine Throughput
+          run:  ./test-vine-task-throughput.sh
 # Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
 #  coffea-job:
 #    runs-on: ubuntu-20.04
