@@ -30,12 +30,9 @@ int main(int argc, char *argv[])
 	}
 
 	printf("waiting for tasks to complete...\n");
-	bool start_timer = true;
+	clock_t start = clock();
 	while(!vine_empty(m)) {
 		t  = vine_wait(m, 5);
-		if (start_timer):
-			clock_t start = clock();
-			start = false
 		if(t) {
 			vine_task_delete(t);
 		}

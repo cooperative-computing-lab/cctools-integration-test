@@ -23,15 +23,13 @@ int main(int argc, char *argv[])
 	printf("TaskVine listening on %d\n", vine_port(m));
 
 	printf("Declaring tasks...");
-	bool start_timer = true
+
 	for(i=0;i<tasksC;i++) {
 		struct vine_task *t = vine_task_create(":");
 		vine_task_set_cores(t, 1);
-
+		clock_t start = clock();
 		int task_id = vine_submit(m, t);
         while(!vine_empty(m)) {
-			if (start_timer):
-				clock_t start = clock();
             t  = vine_wait(m, 5);
             if(t) {
                 vine_task_delete(t);
