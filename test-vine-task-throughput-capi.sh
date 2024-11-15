@@ -4,7 +4,7 @@
 . ./install-github.sh
 
 # Compile C API test using environment 
-$GCC test-vine-task-throughput.c -o test-vine-task-throughput -I $PREFIX/include/cctools/ -L $PREFIX/lib -ltaskvine -ldttools -lm -lcrypto -lssl -lz
+gcc test-vine-task-throughput.c -o test-vine-task-throughput -I $PREFIX/include/cctools/ -L $PREFIX/lib -ltaskvine -ldttools -lm -lcrypto -lssl -lz
 
 ./test-vine-task-throughput &
 
