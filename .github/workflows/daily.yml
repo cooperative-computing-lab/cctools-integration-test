@@ -85,7 +85,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
         - name: Test Vine Throughput Test C API
-          run:  ./test-vine-throughput-capi.sh
+          run:  ./test-vine-task-throughput-capi.sh
   
   parrot-cvmfs-job:
     runs-on: ubuntu-20.04
