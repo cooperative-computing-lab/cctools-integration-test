@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import ndcctools.taskvine as vine
 import time
+import sys
 
 def func():
     return 
@@ -45,7 +46,7 @@ def main():
     throughput = num_tasks/many
     chaining = num_tasks/one
 
-    print(f"Throughput was {throughput} tasks per second")
+    print(f"\nThroughput was {throughput} tasks per second")
     print(f"Chaining was {chaining} tasks per second")
     print("all tasks complete!")
     assert throughput >= 110
