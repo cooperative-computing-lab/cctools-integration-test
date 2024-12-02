@@ -7,5 +7,5 @@
 . ./install-github.sh
 
 # Run the test case.
-python3 test-vine-task-throughput.py
-python3 test-vine-task-serverless.py
+python test-vine-task-throughput.py
+python test-vine-task-serverless.py
