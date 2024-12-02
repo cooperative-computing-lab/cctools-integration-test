@@ -11,7 +11,6 @@ if __name__ == "__main__":
     factory = vine.Factory("local",manager_host_port="localhost:{}".format(q.port))
     factory.max_workers=1
     factory.min_workers=1
-    factory.disk = 100
 
     num_tasks = 1000
 
