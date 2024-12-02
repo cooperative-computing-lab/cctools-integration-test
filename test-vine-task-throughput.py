@@ -4,7 +4,7 @@ import ndcctools.taskvine as vine
 import time
 import sys
 
-if __name__ == "__main__":
+def main():
 
     q = vine.Manager()
     print("listening on port", q.port)
@@ -29,11 +29,11 @@ if __name__ == "__main__":
                 start = time.time()
                 start_timer = False
     
-    end = time.time()
-    many = end - start
+        end = time.time()
+        many = end - start
 
-    start = time.time()
-    with factory:
+        start = time.time()
+    
         for i in range(num_tasks):
             while not q.empty():
                 result = q.wait(5)
@@ -41,8 +41,8 @@ if __name__ == "__main__":
             task_id = q.submit(t)
 
         print("waiting for tasks to complete...")
-    end = time.time()
-    one = end - start
+        end = time.time()
+        one = end - start
     throughput = num_tasks/many
     chaining = num_tasks/one
     print(f"\nThroughput was {throughput} tasks per second")
@@ -50,6 +50,9 @@ if __name__ == "__main__":
     print("all tasks complete!")
     assert throughput >= 190
     assert chaining >= 155
-    
+
+if __name__ == '__main__':
+    main()
+
 # vim: set sts=4 sw=4 ts=4 expandtab ft=python:
 
