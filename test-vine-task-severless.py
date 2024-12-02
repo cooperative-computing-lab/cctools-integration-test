@@ -42,10 +42,14 @@ def main():
             task_id = q.submit(t)
         end = time.time()
         one = end-start
-    print(f"It took {many} seconds\n")
-    print(f"Throughput was {num_tasks/many} tasks per second")
-    print(f"Chaining was {num_tasks/one} tasks per second")
+    throughput = num_tasks/many
+    chaining = num_tasks/one
+
+    print(f"Throughput was {throughput} tasks per second")
+    print(f"Chaining was {chaining} tasks per second")
     print("all tasks complete!")
+    assert throughput >= 110
+    assert chaining >= 50
 
 if __name__ == '__main__':
     main()

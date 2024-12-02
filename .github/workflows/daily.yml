@@ -77,7 +77,7 @@ jobs:
           uses: actions/checkout@v3
         - name: Test Vine Serverless Mode
           run:  ./test-vine-serverless.sh
-  
+
   parrot-cvmfs-job:
     runs-on: ubuntu-20.04
     timeout-minutes: 10
@@ -104,6 +104,15 @@ jobs:
           uses: actions/checkout@v3
         - name: Test Vine Throughput
           run:  ./test-vine-task-throughput.sh
+          
+  vine-throughput-capi-job:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test Vine Throughput Test C API
+        run:  ./test-vine-task-throughput-capi.sh
 # Removed plain coffea test 7/24/2023 to replace with coffea-dask-taskvine when ready.
 #  coffea-job:
 #    runs-on: ubuntu-20.04

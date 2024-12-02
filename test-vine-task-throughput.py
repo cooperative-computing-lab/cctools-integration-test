@@ -43,11 +43,13 @@ if __name__ == "__main__":
         print("waiting for tasks to complete...")
     end = time.time()
     one = end - start
-
-    print(f"It took {many} seconds\n")
-    print(f"Throughput was {num_tasks/many} tasks per second")
-    print(f"Chaining was {num_tasks/one} tasks per second")
+    throughput = num_tasks/many
+    chaining = num_tasks/one
+    print(f"Throughput was {throughput} tasks per second")
+    print(f"Chaining was {chaining} tasks per second")
     print("all tasks complete!")
+    assert throughput >= 190
+    assert chaining >= 155
     
 # vim: set sts=4 sw=4 ts=4 expandtab ft=python:
 
