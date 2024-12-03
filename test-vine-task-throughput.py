@@ -84,11 +84,11 @@ def main():
     print(f"\nServerless Throughput was {serverless_throughput} tasks per second")
     print(f"Serverless Chaining was {serverless_chaining} tasks per second")
     print("all tasks complete!")
-    assert throughput >= 190, "Throughput in python api is less than required 190"
-    assert chaining >= 155, "Throughput for chaining in python api is less than required 155"
-    assert serverless_throughput >= 110, "Throughput using serverless is less than required 190"
-    assert serverless_chaining >= 50, "Throughput for chaining using serverless is less than required 155"
-    
+    assert throughput >= 570, "Throughput in python api is less than required 190"
+    assert chaining >= 510, "Throughput for chaining in python api is less than required 155"
+    assert serverless_throughput >= 220, "Throughput using serverless is less than required 190"
+    assert serverless_chaining >= 200, "Throughput for chaining using serverless is less than required 155"
+
 if __name__ == '__main__':
     main()
 

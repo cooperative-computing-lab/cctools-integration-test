@@ -67,11 +67,11 @@ int main(int argc, char *argv[])
 	double chaining = tasksC / chaining_time;
 
 	printf("Throughput was %f tasks per second\n", throughput);
-	assert(throughput > 1000);
+	assert(throughput > 900);
 
 	printf("Chaining was %f tasks per second\n", chaining);
 	printf("all tasks complete!\n");
-	assert(chaining > 1000);
+	assert(chaining > 1500);
 	vine_delete(m);
 
 	return 0;
