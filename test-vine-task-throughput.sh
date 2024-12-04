@@ -6,5 +6,5 @@
 # Install conda development environment
 . ./install-github.sh
 
-# Run the serverless test case.
-python3 test-vine-task-throughput.py
+# Run the test case.
+python test-vine-task-throughput.py
