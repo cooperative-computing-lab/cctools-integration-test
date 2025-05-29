@@ -16,7 +16,7 @@ on:
 
 jobs:
   conda-prod-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
         - name: Checkout
@@ -25,7 +25,7 @@ jobs:
           run: ./test-conda-prod.sh
 
   conda-devel-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
         - name: Checkout
@@ -34,7 +34,7 @@ jobs:
           run: ./test-conda-devel.sh
 
   github-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
         - name: Checkout
@@ -43,7 +43,7 @@ jobs:
           run: ./test-github.sh
 
   parsl-wq-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
         - name: Checkout
@@ -52,7 +52,7 @@ jobs:
           run:  ./test-parsl-wq.sh
 
   parsl-vine-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
         - name: Checkout
@@ -61,7 +61,7 @@ jobs:
           run:  ./test-parsl-vine.sh
 
   dask-vine-job:
-     runs-on: ubuntu-20.04
+     runs-on: ubuntu-24.04
      timeout-minutes: 10
      steps:
         - name: Checkout
@@ -70,7 +70,7 @@ jobs:
           run:  ./test-dask-vine.sh
 
   vine-serverless-job:
-     runs-on: ubuntu-20.04
+     runs-on: ubuntu-24.04
      timeout-minutes: 20
      steps:
         - name: Checkout
@@ -79,7 +79,7 @@ jobs:
           run:  ./test-vine-serverless.sh
 
   parrot-cvmfs-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
         - name: Checkout
@@ -88,7 +88,7 @@ jobs:
           run:  ./test-parrot-cvmfs.sh
 
   topcoffea-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
         - name: Checkout
@@ -97,7 +97,7 @@ jobs:
           run:  ./test-topeft.sh
 
   vine-task-throughput:
-     runs-on: ubuntu-20.04
+     runs-on: ubuntu-24.04
      timeout-minutes: 20
      steps:
         - name: Checkout
@@ -106,7 +106,7 @@ jobs:
           run:  ./test-vine-task-throughput.sh
           
   vine-throughput-capi-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: Checkout
