@@ -19,6 +19,12 @@ def main():
     factory = vine.Factory("local", manager_host_port="localhost:{}".format(q.port))
     factory.max_workers = 1
     factory.min_workers = 1
+    factory.cores = 1
+    factory.memory = 2000
+    factory.disk = 2000
+    factory.debug_file = "stderr"
+    factory.debug = "all"
+    factory.extra_options = "--transfer-port=9123:9199"
 
     num_tasks = 1000
 
