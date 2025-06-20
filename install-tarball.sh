@@ -1,14 +1,14 @@
 # Install a binary from the tarball distribution into $PREFIX
 
 # Get the common install setup
-.install-common.sh
+. ./install-common.sh
 
 # Choose the Ubuntu distribution
-TARBALL="cctools-nightly-x86_64-ubuntu20.04.tar.gz"
+TARBALL="cctools--x86_64-ubuntu24.04.tar.gz"
 PREFIX=`pwd`/cctools-install
 
 # Fetch the tarball
-wget --quiet "https://github.com/cooperative-computing-lab/cctools/releases/download/nightly/${TARBALL}"
+wget --quiet "https://github.com/cooperative-computing-lab/cctools/releases/download/devel/${TARBALL}"
 
 # Unpack into prefix
 mkdir -p ${PREFIX}
