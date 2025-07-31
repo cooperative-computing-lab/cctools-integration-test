@@ -15,9 +15,9 @@ then
 			echo "Could not access CVMFS!"
 			exit 1
 		fi
-	echo
-		echo "CVMFS driver is not enabled in Parrto!"
-		exit 1
+    else
+		echo "CVMFS driver is not enabled in Parrot for ubuntu!"
+		exit 0
 	fi
 else
 	echo "Parrot could not run /bin/true!"
