@@ -5,10 +5,11 @@
 # Installing fresh from conda is too slow, use micromamba instead.
 curl -L micro.mamba.pm/install.sh >install-micromamba.sh
 chmod 755 install-micromamba.sh
-bash ./install-micromamba.sh
+
+export MAMBA_ROOT_PREFIX=$HOME/micromamba
+bash ./install-micromamba.sh < /dev/null
 
 # Activate the shell hooks without starting a new shell.
-export MAMBA_ROOT_PREFIX=$HOME/micromamba
 eval "$($HOME/.local/bin/micromamba shell hook --shell bash)"
 
 # Activate the root environment

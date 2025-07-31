@@ -1,8 +1,9 @@
 #!/bin/bash
 
-. install-topeft.sh
+. ./install-topeft.sh
 
 cd topeft/analysis/topeft_run2
+mkdir -p /tmp/${USER}
 
 echo "*** Starting a single WQ worker"
 work_queue_worker -d all -o worker.log --single-shot -t 300 localhost 9123 &
